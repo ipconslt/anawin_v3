@@ -17,5 +17,15 @@ class ContentController extends AbstractController
         ]);
     }
 
+    /**
+     * @Route("/categorie", name="admin_categorie")
+     */
+    public function categorie()
+    {
+        return $this->render('content/categorie.html.twig', [
+            'controller_name' => 'ContentController',
+        ]);
+    }
+
     
 }
