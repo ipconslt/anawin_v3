@@ -12,12 +12,12 @@ use Symfony\Component\Routing\Annotation\Route;
  class HomeController extends AbstractController
 {
     /**
-     * @Route("/home", name="home")
-     * @Route("/", name="home0")
+     * @Route("/home", name="home_index")
+     * @Route("/", name="homehome_index2")
      */
     public function index()
     {
-        return $this->render('home/index.html.twig', [
+        return $this->render('index.html.twig', [
             'controller_name' => 'HomeController',
         ]);
     }

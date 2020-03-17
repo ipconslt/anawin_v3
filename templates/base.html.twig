@@ -1,69 +1,100 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}TradesBusiness{% endblock %}</title>
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-        <link rel="stylesheets"  href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.10/css/select2.min.css">      
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport"    content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="">
+	<meta name="author"      content="Sergey Pozhilov (GetTemplate.com)">
+	
+	<title>{% block title %}Anawin {% endblock %}</title>
 
+	<link rel="shortcut icon" href="assets/images/gt_favicon.png">
         {% block stylesheets %} 
         <link rel="stylesheet"  href="{{ asset('assets/css/main.css') }}"> 
         <link rel="stylesheet"  href="{{ asset('assets/css/bootstrap.min.css') }}"> 
         <link rel="stylesheet"  href="{{ asset('assets/css/bootstrap-theme.css') }}"> 
         <link rel="stylesheet"  href="{{ asset('assets/css/font-awesome.min.css') }}"> 
         {% endblock %}
-    </head>
-    <body>
-
-         <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-            <a class="navbar-brand" href="{{path('home')}}">CRP-SHOP</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav mr-auto">
-
-                                
-                    <li class="nav-item ">
-                        <a class="nav-link" href="#">A Propos<span class="sr-only">(current)</span></a>
-                    </li>
 
 
-                    <li class="nav-item ">
-                        <a class="nav-link {% if current_menu is defined and current_menu == 'properties' %} active {% endif %}" href="#">Ventes <span class="sr-only">(current)</span></a>
-                    </li>
-                        
-                    <li class="nav-item ">
-                        <a class="nav-link" href="#">Locations<span class="sr-only">(current)</span></a>
-                    </li>
+	<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+	<!--[if lt IE 9]>
+	<script src="assets/js/html5shiv.js"></script>
+	<script src="assets/js/respond.min.js"></script>
+	<![endif]-->
+</head>
 
-                    <li class="nav-item ">
-                        <a class="nav-link" href="#">Notre contact<span class="sr-only">(current)</span></a>
-                    </li>
+<body class="home">
+	<!-- Fixed navbar -->
+	<div class="navbar navbar-inverse navbar-fixed-top headroom" >
+		<div class="container">
+			<div class="navbar-header">
+				<!-- Button for smallest screens -->
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"><span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
+				<a class="navbar-brand" href="{{ path('home_index') }}"><img src="assets/images/logo.png" alt="Progressus HTML5 template"></a>
+			</div>
+			<div class="navbar-collapse collapse">
+				<ul class="nav navbar-nav pull-right">
+					<li class="active"><a href="{{ path('home_index') }}">Accueil</a></li>
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown">Qui sommes-nous <b class="caret"></b></a>
+						<ul class="dropdown-menu">
+							<li><a href="{{ path('page') }}">Mot de la Directrice</a></li>
+							<li class="active"><a href="{{ path('page') }}">L’équipe</a></li>
+							<li class="active"><a href="{{ path('contact') }}">Nous Contacter</a></li>
+						</ul>
+					</li>
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown">Nous connaitre  <b class="caret"></b></a>
+						<ul class="dropdown-menu">
+							<li><a href="{{ path('page') }}">Programmes</a></li>
+							<li class="active"><a href="{{ path('page') }}">Events</a></li>
+						</ul>
+					</li>
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown">Documentation   <b class="caret"></b></a>
+						<ul class="dropdown-menu">
+							<li><a href="#">Articles </a></li>
+							<li><a href="{{ path('page') }}">Centrafrique</a></li>
+							<li class="active"><a href="{{ path('page') }}">Pauvreté</a></li>
+						</ul>
+					</li>
+					<li><a href="{{ path('page') }}">Galeries</a></li>
+					<li><a href="{{ path('admin_home') }}" target="blank" >Admin</a></li>
+					<li><a href="{{ path('contact') }}">Contact</a></li>
+					<li><a class="btn" href="{{ path('fos_user_security_login') }}">SIGN IN / SIGN UP</a></li>
+				</ul>
+			</div><!--/.nav-collapse -->
+		</div>
+	</div> 
+	<!-- /.navbar -->
+{% block body %}
 
-                    <li class="nav-item ">
-                        <a class="nav-link" href="#">Admin<span class="sr-only">(current)</span></a>
-                    </li>
 
-                    <li class="nav-item ">
-                        <a class="nav-link" href="#">Deconnexion<span class="sr-only">(current)</span></a>
-                    </li>
+</div>	<!-- /container -->
+	
+	<!-- Social links. @TODO: replace by link/instructions in template -->
+	<section id="social">
+		<div class="container">
+			<div class="wrapper clearfix">
+				<!-- AddThis Button BEGIN -->
+				<div class="addthis_toolbox addthis_default_style">
+				<a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+				<a class="addthis_button_tweet"></a>
+				<a class="addthis_button_linkedin_counter"></a>
+				<a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+				</div>
+				<!-- AddThis Button END -->
+			</div>
+		</div>
+	</section>
+	<!-- /social links -->
 
-                </ul>
-         
-                <form class="form-inline my-2 my-lg-0">
-                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-                </form>
+{% endblock %}
 
-                
-            </div>
-        </nav>
 
-        {% block body %} {% endblock %}
-
-        <footer id="footer" class="top-space">
+{% block footer %}
+	<footer id="footer" class="top-space">
 
 		<div class="footer1">
 			<div class="container">
@@ -72,17 +103,16 @@
 					<div class="col-md-3 widget">
 						<h3 class="widget-title">Contact</h3>
 						<div class="widget-body">
-							<p>Tél : 01 46 78 01 00<br>
-								<a href="mailto:#">paulguinot@guinot.asso.fr</a><br>
+							<p>+33 06 51 55 87 57<br>
+								<a href="mailto:#">info@anawin-mbomou.org</a><br>
 								<br>
-24-26 bd Chastenet de Géry
-94814 Villejuif Cedex
+								234 Hidden Pond Road, Ashland City, TN 37015
 							</p>	
 						</div>
 					</div>
 
 					<div class="col-md-3 widget">
-						<h3 class="widget-title">Follow me</h3>
+						<h3 class="widget-title">Nous suivre</h3>
 						<div class="widget-body">
 							<p class="follow-me-icons">
 								<a href=""><i class="fa fa-twitter fa-2"></i></a>
@@ -94,11 +124,12 @@
 					</div>
 
 					<div class="col-md-6 widget">
-						<h3 class="widget-title">Text widget</h3>
+						<h3 class="widget-title">A propos de Anawin</h3>
 						<div class="widget-body">
-							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Excepturi, dolores, quibusdam architecto voluptatem amet fugiat nesciunt placeat provident cumque accusamus itaque voluptate modi quidem dolore optio velit hic iusto vero praesentium repellat commodi ad id expedita cupiditate repellendus possimus unde?</p>
-							<p>Eius consequatur nihil quibusdam! Laborum, rerum, quis, inventore ipsa autem repellat provident assumenda labore soluta minima alias temporibus facere distinctio quas adipisci nam sunt explicabo officia tenetur at ea quos doloribus dolorum voluptate reprehenderit architecto sint libero illo et hic.</p>
-						</div>
+							<p>Nous sommes une organisation qui travaille depuis 2011, avec l'objectif de générer des espaces pour instruire les enfants, les adolescents et les adultes en situation de vulnérabilité</p>
+							<p>Être une organisation qui facilite les outils pour le développement de projets de vie dans la communauté où ils opèrent Mission.</p>
+                            <p>Favoriser le développement et la croissance de la personne, en lui accordant les outils nécessaires pour atteindre le but de sa vie</p>
+                            </div>
 					</div>
 
 				</div> <!-- /row of widgets -->
@@ -112,8 +143,8 @@
 					<div class="col-md-6 widget">
 						<div class="widget-body">
 							<p class="simplenav">
-								<a href="#">Home</a> | 
-								<a href="about.html">About</a> |
+								<a href="#">Accueil</a> | 
+								<a href="about.html">Qui sommes-nous </a> |
 								<a href="sidebar-right.html">Sidebar</a> |
 								<a href="contact.html">Contact</a> |
 								<b><a href="signup.html">Sign up</a></b>
@@ -124,7 +155,7 @@
 					<div class="col-md-6 widget">
 						<div class="widget-body">
 							<p class="text-right">
-								Copyright &copy; 2014, Your name. Designed by <a href="http://gettemplate.com/" rel="designer">gettemplate</a> 
+								Copyright &copy; 2020, @Anawin. Designed by <a href="mailto:ipalakot@gmail.com" >Georges Igor PALAKOT</a> 
 							</p>
 						</div>
 					</div>
@@ -134,33 +165,16 @@
 		</div>
 
 	</footer>	
-		
+	{% endblock %}
 
+ {% block javascripts %}
+	<!-- JavaScript libs are placed at the end of the document so the pages load faster -->
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	<script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+	<script src="assets/js/headroom.min.js"></script>
+	<script src="assets/js/jQuery.headroom.min.js"></script>
+	<script src="assets/js/template.js"></script>
 
-
-
-
-
-
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" </script>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" 
-                    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" 
-                    crossorigin="anonymous">
-            </script>
-            
-            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" 
-                    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" 
-                    crossorigin="anonymous">
-            </script>
-          
-        {% block javascripts %}
-        <script src="{{ asset('assets/template.js') }}"> 
-        <script src="{{ asset('assets/google-map.js') }}"> 
-        <script src="{{ asset('assets/headroom.min.js') }}"> 
-        <script src="{{ asset('assets/html5shiv.js') }}"> 
-        <script src="{{ asset('assets/jQuery.headroom.min.js') }}"> 
-        <script src="{{ asset('assets/respond.min.js') }}"> 
-        
-    </script> {% endblock %}
-    </body>
+ {% endblock %}
+</body>
 </html>
