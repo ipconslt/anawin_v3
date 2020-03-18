@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport"    content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="">
+	<meta name="author"      content="Sergey Pozhilov (GetTemplate.com)">
+	
+	<title>{% block title %}Anawin {% endblock %}</title>
+
+	<link rel="shortcut icon" href="assets/images/gt_favicon.png">
+        {% block stylesheets %} 
+        <link rel="stylesheet"  href="{{ asset('assets/css/main.css') }}"> 
+        <link rel="stylesheet"  href="{{ asset('assets/css/bootstrap.min.css') }}"> 
+        <link rel="stylesheet"  href="{{ asset('assets/css/bootstrap-theme.css') }}"> 
+        <link rel="stylesheet"  href="{{ asset('assets/css/font-awesome.min.css') }}"> 
+        {% endblock %}
+
+
+	<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+	<!--[if lt IE 9]>
+	<script src="assets/js/html5shiv.js"></script>
+	<script src="assets/js/respond.min.js"></script>
+	<![endif]-->
+</head>
+    <body>
+      	<!-- Fixed navbar -->
+	<div class="navbar navbar-inverse navbar-fixed-top headroom" >
+		<div class="container">
+			<div class="navbar-header">
+				<!-- Button for smallest screens -->
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"><span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
+				<a class="navbar-brand" href="{{ path('home_index') }}"><img src="assets/images/logo.png" alt="Progressus HTML5 template"></a>
+			</div>
+			<div class="navbar-collapse collapse">
+				<ul class="nav navbar-nav pull-right">
+					<li class="active"><a href="{{ path('home_index') }}">Accueil</a></li>
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown">Qui sommes-nous <b class="caret"></b></a>
+						<ul class="dropdown-menu">
+							<li><a href="{{ path('page') }}">Mot de la Directrice</a></li>
+							<li class="active"><a href="{{ path('page') }}">L’équipe</a></li>
+							<li class="active"><a href="{{ path('contact') }}">Nous Contacter</a></li>
+						</ul>
+					</li>
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown">Nous connaitre  <b class="caret"></b></a>
+						<ul class="dropdown-menu">
+							<li><a href="{{ path('page') }}">Programmes</a></li>
+							<li class="active"><a href="{{ path('page') }}">Events</a></li>
+						</ul>
+					</li>
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown">Documentation   <b class="caret"></b></a>
+						<ul class="dropdown-menu">
+							<li><a href="{{path('articles_index')}}">Articles </a></li>
+							<li><a href="{{ path('page') }}">Centrafrique</a></li>
+							<li class="active"><a href="{{ path('page') }}">Pauvreté</a></li>
+						</ul>
+					</li>
+					<li><a href="{{ path('page') }}">Galeries</a></li>
+					<li><a href="{{ path('admin_home') }}" target="blank" >Admin</a></li>
+					<li><a href="{{ path('contact') }}">Contact</a></li>
+					<li><a class="btn" href="{{ path('fos_user_security_login') }}">SIGN IN / SIGN UP</a></li>
+				</ul>
+			</div><!--/.nav-collapse -->
+		</div>
+	</div> 
+	<!-- /.navbar -->
+    </br></br></br></br></br>
+    <div class="container">
+      <div>
+            {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                {{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }} |
+                <a href="{{ path('fos_user_security_logout') }}">
+                    {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
+                </a>
+            {% else %}
+                <a href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
+            {% endif %}
+        </div>
+
+        {% if app.request.hasPreviousSession %}
+            {% for type, messages in app.session.flashbag.all() %}
+                {% for message in messages %}
+                    <div class="flash-{{ type }}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endfor %}
+        {% endif %}
+
+        <div>
+            {% block fos_user_content %}
+            {% endblock fos_user_content %}
+        </div>
+        </div>
+    </body>
+</html>

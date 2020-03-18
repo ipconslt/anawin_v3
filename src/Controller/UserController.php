@@ -17,12 +17,12 @@ use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
 /**
- * @Route("/user")
+ * @Route("/admin/user")
  */
 class UserController extends AbstractController
 {
     /**
-     * @Route("/admin/user", name="user")
+     * @Route("/user", name="user")
      */
 
     public function index()
