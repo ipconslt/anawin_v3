@@ -5,28 +5,29 @@ namespace App\Controller\Administrator;
 use App\Entity\Articles;
 use App\Form\ArticlesType;
 use App\Repository\ArticlesRepository;
+
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-/**
- * @Route("/admin/articles")
- */
-class ArticlesController extends AbstractController
+    /**
+     * @Route("/administrator/articles")
+     */
+    class ArticlesController extends AbstractController
 {
     /**
-     * @Route("/", name="articles_index", methods={"GET"})
+     * @Route("/", name="articles_administrator_index",  methods={"GET"})
      */
-    public function index(ArticlesRepository $articlesRepository): Response
+    public function index(ArticlesRepository $articlesRepository):Response
     {
-        return $this->render('articles/index.html.twig', [
+        return $this->render('administrator/articles/index.html.twig', [
             'articles' => $articlesRepository->findAll(),
         ]);
     }
 
-    /**
-     * @Route("/new", name="articles_new", methods={"GET","POST"})
+     /**
+     * @Route("/new", name="articles_administrator_new", methods={"GET","POST"})
      */
     public function new(Request $request): Response
     {
@@ -45,16 +46,6 @@ class ArticlesController extends AbstractController
         return $this->render('articles/new.html.twig', [
             'article' => $article,
             'form' => $form->createView(),
-        ]);
-    }
-
-    /**
-     * @Route("/{id}", name="articles_show", methods={"GET"})
-     */
-    public function show(Articles $article): Response
-    {
-        return $this->render('articles/show.html.twig', [
-            'article' => $article,
         ]);
     }
 
@@ -91,4 +82,5 @@ class ArticlesController extends AbstractController
 
         return $this->redirectToRoute('articles_index');
     }
+
 }
