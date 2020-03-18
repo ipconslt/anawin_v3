@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Categorie index{% endblock %}
+
+{% block body %}
+
+        <div class = "jumbotron">
+            </br>
+            </br>
+            </br>
+
+            <h3 style="text-align:center">Administrator / Categorie Index </h3>
+
+
+        </div>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th> <h4>Id </h4></th>
+                    <th><h4>Titre</h4></th>
+                    <th><h4>Resume</h4></th>
+                    <th><h4>Actions</h4></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for categorie in categories %}
+                    <tr>
+                        <td>{{ categorie.id }}</td>
+                        <td>{{ categorie.titre }}</td>
+                        <td>{{ categorie.resume }}</td>
+                        <td>
+                            <a href="{{ path('categorie_show', {'id': categorie.id}) }}">show</a>
+                            <a href="{{ path('categorie_edit', {'id': categorie.id}) }}">edit</a>
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="4">no records found</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+            </table>
+        </br>
+        </br>
+        </br>
+        </br>
+        </br>
+</br>
+            <p align="right" >
+                <a  href="{{ path('categorie_new') }}">
+                    <button type="button" class="btn btn-secondary">Creer une catégorie </button>
+                </a>
+            </p>
+{% endblock %}
