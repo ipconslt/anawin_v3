@@ -3,8 +3,15 @@
 {% block title %}Articles index{% endblock %}
 
 {% block body %}
-    <h1>Articles index</h1>
+        <div class = "jumbotron">
+            </br>
+            </br>
+            </br>
+            </br>
+            <h3 style="text-align:left"> Articles / Index </h3>
+        </div>
 
+<div class="container">
     <table class="table">
         <thead>
             <tr>
@@ -13,10 +20,8 @@
                 <th>Categorie</th>
                 <th>Auteur</th>
                 <th>Resume</th>
-                <th>Contenu</th>
-                <th>Created_At</th>
-                <th>Image</th>
-                <th>actions</th>
+                <th>Date Création</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -27,12 +32,10 @@
                 <td>{{ article.categorie }}</td>
                 <td>{{ article.auteur }}</td>
                 <td>{{ article.resume }}</td>
-                <td>{{ article.contenu }}</td>
                 <td>{{ article.createdAt ? article.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ article.image }}</td>
                 <td>
-                    <a href="{{ path('articles_show', {'id': article.id}) }}">show</a>
-                    <a href="{{ path('articles_edit', {'id': article.id}) }}">edit</a>
+                    <a href="{{ path('articles_show', {'id': article.id}) }}">Lire l'article</a>
+                    {# <a href="{{ path('articles_edit', {'id': article.id}) }}">edit</a> #}
                 </td>
             </tr>
         {% else %}
@@ -42,6 +45,16 @@
         {% endfor %}
         </tbody>
     </table>
+        </br>
+        </br>
+        </br>
+        </br>
+        </br>
+<p align="right" >
+    <a href="{{ path('articles_new') }}">
+      <button type="button" class="btn btn-secondary">Creer un article </button>
+    
+    </a>
 
-    <a href="{{ path('articles_new') }}">Create new</a>
+ </div>
 {% endblock %}
