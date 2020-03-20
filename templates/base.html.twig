@@ -61,7 +61,13 @@
 					<li><a href="{{ path('page') }}">Galeries</a></li>
 					<li><a href="{{ path('admin_home') }}" target="blank" >Admin</a></li>
 					<li><a href="{{ path('contact') }}">Contact</a></li>
-					<li><a class="btn" href="{{ path('fos_user_security_login') }}">SIGN IN / SIGN UP</a></li>
+					
+					{% if not app.user %}
+						<li><a class="btn" href="{{ path('fos_user_security_login') }}">LOG IN / SIGN UP</a></li>
+					{% else %}
+						<li><a class="btn" href="{{ path('fos_user_security_logout') }}"> LOG OFF</a></li>
+					{% endif %}
+
 				</ul>
 			</div><!--/.nav-collapse -->
 		</div>
