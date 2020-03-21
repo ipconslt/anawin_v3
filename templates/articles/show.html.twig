@@ -49,14 +49,37 @@
         </tbody>
     </table>
 
-<p align="right" >
-    <a href="{{ path('articles_index') }}">
-        <button type="button" class="btn btn-secondary">Tous les articles  </button>
-    </a>
-</p>
-   {# <a href="{{ path('articles_edit', {'id': article.id}) }}">edit</a> #}
 
-   {# {{ include('articles/_delete_form.html.twig') }} #}
+    <section id="commentaires">
+      <p class="bg-primary text-white">{{article.comments | length}} LES COMMENTAIRES  </p>
+
+        	{% for comment in article.comments %}
+        		<div class="comment">
+        			<div class="row">
+        				<div class="col3">
+        				    {{comment.auteur }}{{ comment.createdAt | date('d/m/Y � H:i') }}</small>)
+        				</div>
+        				<div class="col">
+        				    {{ comment.content |raw }}
+        				</div>
+                        </br>
+        			</div>
+        		</div>
+        {% endfor %}
+  <p class="bg-primary text-white">Ajouter votre commentaire  </p>
+        {% if app.user %}
+            {{ form_start(commentForm) }}
+            {{form_row(commentForm.auteur, {'attr':{'placeholder': "votre nom"}})}}
+            {{form_row(commentForm.content, {'attr':{'placeholder': "votre commentaire"} })}}
+            <button type="submit" class"btn btn-success"> Commentez </button>
+            {{ form_end(commentForm) }}
+
+        {% else%}
+                <h4> Vous ne pouvez pas commenter sans etre connecté</h4>
+                <a href="{{path('security_login') }}" class="btn btn-primary"> Connewion </a>
+        {% endif %}
+        </section>   
+
 
 </div>
 {% endblock %}
