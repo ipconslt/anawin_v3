@@ -4,11 +4,16 @@ namespace App\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 
+use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
+
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ArticlesRepository")
+ * @Vich\Uploadable
  */
 class Articles
 {
@@ -40,14 +45,29 @@ class Articles
     private $contenu;
 
     /**
+     * @Gedmo\Timestampable(on="create")
      * @ORM\Column(type="datetime")
      */
     private $created_At;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @Gedmo\Timestampable(on="create")
+     * @ORM\Column(type="datetime")
      */
-    private $image;
+    private $updated_At;
+
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     * @var string
+     */
+    private $articles_image;
+
+    /**
+     * @Vich\UploadableField(mapping="articles_images", fileNameProperty="articles_image")
+     * @var File
+     */
+    private $imageFile;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Categorie", inversedBy="articles")
@@ -130,24 +150,44 @@ class Articles
         return $this->created_At;
     }
 
-    public function setCreatedAt(\DateTimeInterface $created_At): self
+
+    public function getUpdatedAt(): ?\DateTimeInterface
     {
-        $this->created_At = $created_At;
+        return $this->updated_At;
+    }
+
+    public function getArticlesimage()
+    {
+        return $this->articles_image;
+    }
+
+    public function setArticlesimage(string $articles_image)
+    {
+        $this->Articles_image = $articles_image;
 
         return $this;
     }
 
-    public function getImage(): ?string
+    
+    public function setImageFile(File $article_image = null)
     {
-        return $this->image;
+        $this->imageFile = $image;
+
+        // VERY IMPORTANT:
+        // It is required that at least one field changes if you are using Doctrine,
+        // otherwise the event listeners won't be called and the file is lost
+        if ($articles_image) {
+            // if 'updatedAt' is not defined in your entity, use another property
+            $this->updated_At = new \DateTime('now');
+        }
     }
 
-    public function setImage(string $image): self
+    public function getImageFile()
     {
-        $this->image = $image;
-
-        return $this;
+        return $this->imageFile;
     }
+
+
 
     public function getCategorie(): ?Categorie
     {

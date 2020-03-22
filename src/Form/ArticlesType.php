@@ -25,7 +25,7 @@ class ArticlesType extends AbstractType
             ->add('resume')
             ->add('contenu', CKEditorType::class)
             ->add('created_At')
-            ->add('image')
+            ->add('articles_image')
         ;
     }
 

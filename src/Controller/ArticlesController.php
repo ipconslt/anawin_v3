@@ -47,9 +47,9 @@ class ArticlesController extends AbstractController
 //      $form = $this->createForm(CommentType::class, $comment);
 
         $form = $this->createFormBuilder($comment)
-        ->add('auteur')
-        ->add('content', CKEditorType::class)
-        ->getForm(); 
+                ->add('auteur')
+                ->add('content', CKEditorType::class)
+                ->getForm(); 
        
         
         $form->handleRequest($request);
