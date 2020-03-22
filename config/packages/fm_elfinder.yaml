@@ -1,0 +1,18 @@
+fm_elfinder:
+    instances:
+        default:
+            include_assets: true
+            relative_path: true
+            locale: fr # defaults to current request locale
+            editor: ckeditor # other options are tinymce, tinymce4, fm_tinymce, form, simple, custom
+            fullscreen: true # default is true, applies to simple and ckeditor editors
+            connector:
+                roots:
+                    uploads:
+                        driver: LocalFileSystem
+                        path: uploads
+                        upload_allow: ['image/png', 'image/jpg', 'image/jpeg']
+                        upload_deny: ['all']
+                        upload_max_size: 2M # also file upload sizes restricted in php.ini
+                        
+

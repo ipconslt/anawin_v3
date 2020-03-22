@@ -9,6 +9,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+USE FOS\CKEditorBundle\Form\Type\CKEditorType;
 
 class ArticlesType extends AbstractType
 {
@@ -22,7 +23,7 @@ class ArticlesType extends AbstractType
             ])
             ->add('auteur')
             ->add('resume')
-            ->add('contenu')
+            ->add('contenu', CKEditorType::class)
             ->add('created_At')
             ->add('image')
         ;

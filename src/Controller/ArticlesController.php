@@ -18,6 +18,8 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\FormBuilderInterface;
 
+USE FOS\CKEditorBundle\Form\Type\CKEditorType;
+
 
 /**
  * @Route("/articles")
@@ -46,7 +48,7 @@ class ArticlesController extends AbstractController
 
         $form = $this->createFormBuilder($comment)
         ->add('auteur')
-        ->add('content')
+        ->add('content', CKEditorType::class)
         ->getForm(); 
        
         
