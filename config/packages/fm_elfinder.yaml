@@ -10,7 +10,7 @@ fm_elfinder:
                 roots:
                     uploads:
                         driver: LocalFileSystem
-                        path: uploads
+                        path: uploads/images
                         upload_allow: ['image/png', 'image/jpg', 'image/jpeg']
                         upload_deny: ['all']
                         upload_max_size: 2M # also file upload sizes restricted in php.ini

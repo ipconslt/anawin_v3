@@ -4,8 +4,11 @@ namespace App\Controller;
 
 use App\Entity\Articles;
 use App\Form\ArticlesType;
+use App\Entity\Categorie;
+use App\Form\CategorieType;
 use App\Entity\Comment;
 use App\Form\CommentType;
+
 use App\Repository\ArticlesRepository;
 
 use Doctrine\ORM\EntityManager;

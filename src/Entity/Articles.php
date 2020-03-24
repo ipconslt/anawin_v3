@@ -29,6 +29,13 @@ class Articles
      */
     private $titre;
 
+  /**
+     * @Gedmo\Slug(fields={"titre"})
+     * @ORM\Column(length=128, unique=true)
+     */
+    private $slug;
+
+
     /**
      * @ORM\Column(type="string", length=255)
      */
@@ -44,34 +51,38 @@ class Articles
      */
     private $contenu;
 
-    /**
+     /**
+     * @var \DateTime $created_at
+     * 
      * @Gedmo\Timestampable(on="create")
      * @ORM\Column(type="datetime")
      */
-    private $created_At;
+    private $created_at;
+
 
     /**
-     * @Gedmo\Timestampable(on="create")
+     * @var \DateTime $updated_at
+     * 
+     * @Gedmo\Timestampable(on="update")
      * @ORM\Column(type="datetime")
      */
-    private $updated_At;
+    private $updated_at;
 
 
     /**
      * @ORM\Column(type="string", length=255)
      * @var string
      */
-    private $articles_image;
+    private $featured_image;
 
     /**
-     * @Vich\UploadableField(mapping="articles_images", fileNameProperty="articles_image")
+     * @Vich\UploadableField(mapping="featured_images", fileNameProperty="featured_image")
      * @var File
      */
-    private $imageFile;
+    private $imageFile;    
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Categorie", inversedBy="articles")
-     * @ORM\JoinColumn(nullable=false)
      */
     private $categorie;
 
@@ -80,16 +91,12 @@ class Articles
      */
     private $comments;
 
-    /**
-     * @ORM\Column(type="string", length=255, unique=true)
-     * 
-     * @Gedmo\Slug(fields={"titre"})
-     */
-    private $slug;
 
     public function __construct()
     {
         $this->comments = new ArrayCollection();
+        $this->commentaires = new ArrayCollection();
+        $this->categorie = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -145,61 +152,71 @@ class Articles
         return $this;
     }
 
+
     public function getCreatedAt(): ?\DateTimeInterface
     {
-        return $this->created_At;
+        return $this->created_at;
     }
-
 
     public function getUpdatedAt(): ?\DateTimeInterface
     {
-        return $this->updated_At;
+        return $this->updated_at;
     }
 
-    public function getArticlesimage()
+
+    public function getFeaturedImage()
     {
-        return $this->articles_image;
+        return $this->featured_image;
     }
 
-    public function setArticlesimage(string $articles_image)
+    public function setFeaturedImage($featured_image)
     {
-        $this->Articles_image = $articles_image;
+        $this->featured_image = $featured_image;
 
         return $this;
     }
 
-    
-    public function setImageFile(File $article_image = null)
+    public function setImageFile(File $image = null)
     {
         $this->imageFile = $image;
-
-        // VERY IMPORTANT:
-        // It is required that at least one field changes if you are using Doctrine,
-        // otherwise the event listeners won't be called and the file is lost
-        if ($articles_image) {
-            // if 'updatedAt' is not defined in your entity, use another property
-            $this->updated_At = new \DateTime('now');
+    
+        if ($image) {
+            $this->updated_at = new \DateTime('now');
         }
     }
-
+    
     public function getImageFile()
     {
         return $this->imageFile;
     }
 
 
-
-    public function getCategorie(): ?Categorie
+    /**
+     * @return Collection|Categorie[]
+     */
+    public function getCategorie(): Collection
     {
         return $this->categorie;
     }
 
-    public function setCategorie(?Categorie $categorie): self
+    public function addCategory(Categorie $category): self
     {
-        $this->categorie = $categorie;
+        if (!$this->categorie->contains($category)) {
+            $this->categorie[] = $category;
+        }
 
         return $this;
     }
+
+    public function removeCategory(Categorie $category): self
+    {
+        if ($this->categorie->contains($category)) {
+            $this->categorie->removeElement($category);
+        }
+
+        return $this;
+    }
+    
 
     /**
      * @return Collection|Comment[]

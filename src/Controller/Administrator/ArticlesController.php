@@ -4,6 +4,9 @@ namespace App\Controller\Administrator;
 
 use App\Entity\Articles;
 use App\Form\ArticlesType;
+use App\Entity\Categorie;
+use App\Form\CategorieType;
+
 use App\Repository\ArticlesRepository;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;

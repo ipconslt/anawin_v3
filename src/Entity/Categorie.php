@@ -33,11 +33,9 @@ class Categorie
      * @ORM\OneToMany(targetEntity="App\Entity\Articles", mappedBy="categorie")
      */
     private $articles;
-
     /**
-     * @ORM\Column(type="string", length=255, unique=true)
-     * 
      * @Gedmo\Slug(fields={"titre"})
+     * @ORM\Column(length=128, unique=true)
      */
     private $slug;
 
@@ -46,6 +44,10 @@ class Categorie
         $this->articles = new ArrayCollection();
     }
 
+    public function __toString() {
+        return $this->titre;
+    }
+    
     public function getId(): ?int
     {
         return $this->id;
@@ -63,6 +65,11 @@ class Categorie
         return $this;
     }
 
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
+    
     public function getResume(): ?string
     {
         return $this->resume;
@@ -104,15 +111,6 @@ class Categorie
         }
 
         return $this;
-    }
-
-    public function __toString() {
-        return $this->titre;
-    }
-
-    public function getSlug(): ?string
-    {
-        return $this->slug;
     }
 
 }
