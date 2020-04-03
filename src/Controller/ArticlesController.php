@@ -40,8 +40,7 @@ class ArticlesController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="articles_show"
-     * )
+     * @Route("/{id}", name="articles_show", methods={"GET"} )
      */
     public function show(Articles $article, Request $request, EntityManagerInterface $manager)
     {  
@@ -54,7 +53,6 @@ class ArticlesController extends AbstractController
                 ->add('content', CKEditorType::class)
                 ->getForm(); 
        
-        
         $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid()) {

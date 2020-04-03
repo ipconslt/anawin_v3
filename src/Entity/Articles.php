@@ -35,7 +35,6 @@ class Articles
      */
     private $slug;
 
-
     /**
      * @ORM\Column(type="string", length=255)
      */
@@ -84,7 +83,7 @@ class Articles
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Categorie", inversedBy="articles")
      */
-    private $categorie;
+    public $categorie;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Comment", mappedBy="article", orphanRemoval=true)
@@ -97,6 +96,11 @@ class Articles
         $this->comments = new ArrayCollection();
         $this->commentaires = new ArrayCollection();
         $this->categorie = new ArrayCollection();
+    }
+
+    public function __toString()
+    {
+        return $this->getSlug();
     }
 
     public function getId(): ?int
@@ -158,9 +162,24 @@ class Articles
         return $this->created_at;
     }
 
+    public function setCreatedAt(\DateTimeInterface $created_at): self
+    {
+        $this->created_at = $created_at;
+
+        return $this;
+    }
+
+
     public function getUpdatedAt(): ?\DateTimeInterface
     {
         return $this->updated_at;
+    }
+
+    public function setUpdatedAt(\DateTimeInterface $updated_at): self
+    {
+        $this->updated_at = $updated_at;
+
+        return $this;
     }
 
 
@@ -194,7 +213,7 @@ class Articles
     /**
      * @return Collection|Categorie[]
      */
-    public function getCategorie(): Collection
+    public function getCategorie()
     {
         return $this->categorie;
     }
@@ -252,5 +271,12 @@ class Articles
     public function getSlug(): ?string
     {
         return $this->slug;
+    }
+
+    public function setSlug(string $slug): self
+    {
+        $this->titre = $slug;
+
+        return $this;
     }
 }
