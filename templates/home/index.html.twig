@@ -13,7 +13,7 @@
 				<p> Une Solidarité pour les pauvres du MBOMOU ! </p>
 				</br>
 				</br>
-				<p><a class="btn btn-default btn-lg" role="button">MORE INFO</a> <a class="btn btn-action btn-lg" role="button">DOWNLOAD NOW</a></p>
+				<p><a href="articles/1" class="btn btn-default btn-lg" role="button">PLUS D'INFO</a> <a class="btn btn-action btn-lg" role="button">DOWNLOAD NOW</a></p>
 			</div>
 		</div>
 	</header>
@@ -32,22 +32,23 @@
 	<!-- Highlights - jumbotron -->
 	<div class="jumbotron top-space">
 		<div class="container">
-			
-			<h3 class="text-center thin"> pour tendre la main aux plus petits qui ont besoin de votre aide :</h3>
-			
 			<div class="row">
 				<div class="col-md-3 col-sm-6 highlight">
-					<div class="h-caption"><h4><i class="fa fa-ban"></i>Generer des espaces de solidarités </h4></div>
-					<div class="h-body text-center">
-						<p>Nous sommes une organisation qui travaille depuis 2011, avec l'objectif de générer des espaces pour instruire les enfants, les adolescents et les adultes en situation de vulnérabilité
-						</p>
+					<div class="h-caption">
+						<h4>
+							<i class="fa fa-ban">
+							</i> 
+							<a href="articles/1" > Espaces de solidarités </a> 
+						</h4>
+					</div>
+				<div class="h-body text-center">
+						<p>Toutes nos actions contribuent à sauvegarder la dignité humaine à travers ces jeunes enfants (ces Anawim) avec une présence régulière au plus près d'eux </p>
 					</div>
 				</div>
 				<div class="col-md-3 col-sm-6 highlight">
-					<div class="h-caption"><h4><i class="fa fa-book"></i>développement de projets</h4></div>
+					<div class="h-caption"><h4><i class="fa fa-book"></i><a href="articles/1" >Développement de projets</a></h4></div>
 					<div class="h-body text-center">
-						<p>Être une organisation qui facilite les outils pour le développement de projets de vie dans la communauté où ils opèrent
-Mission </p>
+						<p>Être une organisation qui facilite les outils pour le développement de projets de vie dans la communauté où ou vivent des pauvres </p>
 					</div>
 				</div>
 				<div class="col-md-3 col-sm-6 highlight">
@@ -60,7 +61,7 @@ Favoriser le développement et la croissance de la personne, en lui accordant le
 				<div class="col-md-3 col-sm-6 highlight">
 					<div class="h-caption"><h4><i class="fa fa-smile-o fa-5"></i>Author's support</h4></div>
 					<div class="h-body text-center">
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias, excepturi, maiores, dolorem quasi reprehenderit illo accusamus nulla minima repudiandae quas ducimus reiciendis odio sequi atque temporibus facere corporis eos expedita? </p>
+						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias, excepturi, maiores, dolorem quasi reprehenderit illo accusamus nulla minima repudiandae </p>
 					</div>
 				</div>
 			</div> <!-- /row  -->
@@ -72,42 +73,38 @@ Favoriser le développement et la croissance de la personne, en lui accordant le
 	<!-- container -->
 	<div class="container">
 
-		<h3 class="text-center top-space">pauvreté en république centrafricaine</h3>
-		<br>
+		<h3 class="text-center top-space">Actualités / pauvreté en république centrafricaine</h3>
 
-		<div class="row">
-			<div class="col-sm-6">
-				<h3>Which code editor would you recommend?</h3>
-				<p>I'd highly recommend you <a href="http://www.sublimetext.com/">Sublime Text</a> - a free to try text editor which I'm using daily. Awesome tool!</p>
-			</div>
-			<div class="col-sm-6">
-				<h3>Nice header. Where do I find more images like that one?</h3>
-				<p>
-					Well, there are thousands of stock art galleries, but personally, 
-					I prefer to use photos from these sites: <a href="http://unsplash.com">Unsplash.com</a> 
-					and <a href="http://www.flickr.com/creativecommons/by-2.0/tags/">Flickr - Creative Commons</a></p>
-			</div>
-		</div> <!-- /row -->
+<div class="container">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Titre</th>
+                <th>Auteur</th>
+                <th>Resume</th>
+                <th>Date Création</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for article in articles %}
+            <tr>
+                <td>{{ article.titre }}</td>
 
-		<div class="row">
-			<div class="col-sm-6">
-				<h3>Can I use it to build a site for my client?</h3>
-				<p>
-					Yes, you can. You may use this template for any purpose, just don't forget about the <a href="http://creativecommons.org/licenses/by/3.0/">license</a>, 
-					which says: "You must give appropriate credit", i.e. you must provide the name of the creator and a link to the original template in your work. 
-				</p>
-			</div>
-			<div class="col-sm-6">
-				<h3>Can you customize this template for me?</h3>
-				<p>Yes, I can. Please drop me a line to sergey-at-pozhilov.com and describe your needs in details. Please note, my services are not cheap.</p>
-			</div>
-		</div> <!-- /row -->
+                <td>{{ article.auteur }}</td>
+                <td>{{ article.resume }}</td>
+                <td>{{ article.createdAt ? article.createdAt|date('Y/m/d') : '' }}</td>
+                <td>
+                    <a href="{{ path('articles_show', {'id': article.id}) }}">Lire ici </a> //
+                  {#  <a href="{{ path('articles_edit', {'id': article.id}) }}">Editer</a> #}
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
 
-		<div class="jumbotron top-space">
-			<h4>La veuve indigente qui glisse dans le tronc du temple ses deux piécettes, celle qui tambourine chaque jour à la porte du juge pour réclamer justice, le pauvre Lazare sur lequel le riche ne jette pas même un œil alors qu’il se meurt, mais aussi les aveugles, boiteux, lépreux et autres exclus qui parsèment ses rencontres et ses</h4>
-     		<p class="text-right"><a class="btn btn-primary btn-large">Learn more »</a></p>
-  		</div>
-
+ </div>
+		
 </div>	<!-- /container -->
 	
 	<!-- Social links. @TODO: replace by link/instructions in template -->

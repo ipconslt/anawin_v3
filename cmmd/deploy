@@ -1,0 +1,5 @@
+1/bin/shell
+rsync -av ~/prodsanawi/test/ u99261818@access807569309.webspace-data.io:~/tst/ver_01 -e "ssh -p 22"
+        --exclude=".env"
+        --exclude=/cmmd
+

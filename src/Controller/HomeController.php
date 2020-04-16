@@ -3,9 +3,14 @@
 namespace App\Controller;
 
 use App\Entity\Categorie;
+use App\Entity\Articles;
+
+use App\Repository\ArticlesRepository;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 
 
@@ -15,10 +20,11 @@ use Symfony\Component\Routing\Annotation\Route;
      * @Route("/home", name="home_index")
      * @Route("/", name="homehome_index2")
      */
-    public function index()
+    public function index(ArticlesRepository $articles): Response
     {
         return $this->render('home/index.html.twig', [
             'controller_name' => 'HomeController',
+            'articles' => $articles->findAll(),
         ]);
     }
 
@@ -51,4 +57,5 @@ use Symfony\Component\Routing\Annotation\Route;
             'controller_name' => 'HomeController',
         ]);
     }
+
 }

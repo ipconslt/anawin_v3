@@ -32,10 +32,10 @@ class ArticlesController extends AbstractController
     /**
      * @Route("/", name="articles_index", methods={"GET"})
      */
-    public function index(ArticlesRepository $articlesRepository): Response
+    public function index(ArticlesRepository $articles): Response
     {
         return $this->render('articles/index.html.twig', [
-            'articles' => $articlesRepository->findAll(),
+            'articles' => $articles->findAll(),
         ]);
     }
 

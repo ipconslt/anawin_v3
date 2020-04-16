@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Erreur {{status_code}} - {{ parent() }}
+{% endblock %}
+
+{% block body %}
+
+        <div class="container">
+        </br></br>   </br></br>  </br></br>
+
+            <h1> 
+                Oops......! </br></br> Nous vous prions de nous excuser
+            </h1>
+                </br></br>
+            <h2>
+                car si vous arrivez sur cette page, 
+                </br> 
+                c'est qu'il y a une erreur sur ce site </h2> <h1>"{{ status_code }} {{ status_text }}". </h>
+
+                </br></br>
+
+                Quelque chose est cassée. 
+                
+                </br></br>
+                
+                Nous la corrigerons dès que possible. </br> Désolé pour tout inconvénient causé. 
+
+                </br></br>   
+
+        </div>
+{% endblock %}
+
+
