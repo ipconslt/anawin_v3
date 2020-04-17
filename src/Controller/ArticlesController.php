@@ -29,18 +29,26 @@ USE FOS\CKEditorBundle\Form\Type\CKEditorType;
  */
 class ArticlesController extends AbstractController
 {
+    public function __construct(ArticlesRepository $repository){
+        $this->repository=$repository;
+    }
+
     /**
      * @Route("/", name="articles_index", methods={"GET"})
      */
-    public function index(ArticlesRepository $articles): Response
+    public function index( ): Response
     {
+        #$articles = $this->repository->findCategorie();
+        $articles = $this->repository->findAll();
+
         return $this->render('articles/index.html.twig', [
-            'articles' => $articles->findAll(),
+            'current_menu' => 'articles',
+            'articles' => $articles,
         ]);
     }
 
     /**
-     * @Route("/{id}", name="articles_show", methods={"GET"} )
+     * @Route("/{slug}", name="articles_show", methods={"GET"} )
      */
     public function show(Articles $article, Request $request, EntityManagerInterface $manager)
     {  

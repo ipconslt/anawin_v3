@@ -16,25 +16,40 @@ use Symfony\Component\HttpFoundation\Response;
 
  class HomeController extends AbstractController
 {
+    public function __construct(ArticlesRepository $repository){
+        $this->repository=$repository;
+    }
+    
+
     /**
      * @Route("/home", name="home_index")
      * @Route("/", name="homehome_index2")
+     * @param mixed 
+     * @return Response
      */
-    public function index(ArticlesRepository $articles): Response
+    public function index( ): Response
     {
-        return $this->render('home/index.html.twig', [
+         $articles = $this->repository->findAll();
+         
+         return $this->render('home/index.html.twig', [
+            'current_menu' => 'home', 
             'controller_name' => 'HomeController',
-            'articles' => $articles->findAll(),
+            'articles' => $articles,
         ]);
     }
 
     /**
-     * @Route("/apropos", name="apropos")
+     * @Route("/apropos", name="index_apropos")
      */
     public function apropos()
-    {
-        return $this->render('sidebar-right.html', [
+    {   
+        
+        $articles = $this->repository->findCategorie();
+
+        return $this->render('home/about.html.twig', [
             'controller_name' => 'HomeController',
+            'current_menu' => 'apropos', 
+            'articles' => $articles,
         ]);
     }
 
@@ -45,6 +60,7 @@ use Symfony\Component\HttpFoundation\Response;
     {
         return $this->render('contact.html.twig', [
             'controller_name' => 'HomeController',
+            'current_menu' => 'contact', 
         ]);
     }
 

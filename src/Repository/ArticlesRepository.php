@@ -19,6 +19,21 @@ class ArticlesRepository extends ServiceEntityRepository
         parent::__construct($registry, Articles::class);
     }
 
+    /**
+     * @return Articles[] Returns an array of Articles objects
+     */
+    public function findCategorie()
+    {
+        return $this->createQueryBuilder('a')
+            ->Where('a.categorie = 1')
+            ->getQuery()
+            ->getResult();
+    }
+
+
+
+
+
     // /**
     //  * @return Articles[] Returns an array of Articles objects
     //  */
