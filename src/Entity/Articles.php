@@ -6,10 +6,12 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 
 use Doctrine\ORM\Mapping as ORM;
+
 use Gedmo\Mapping\Annotation as Gedmo;
 
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Cocur\Slugify\Slugify;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ArticlesRepository")
@@ -268,15 +270,21 @@ class Articles
         return $this;
     }
 
-    public function getSlug(): ?string
+    public function getSlug(): string
     {
-        return $this->slug;
+       /*
+        $slugify = new Slugify();
+        echo $slugify->slugify('Hello World!'); // hello-world
+        */
+
+        return (new Slugify())-> slugify($this->titre);
     }
 
-    public function setSlug(string $slug): self
+/*    public function setSlug(string $slug): self
     {
         $this->titre = $slug;
 
         return $this;
-    }
+    }*/
+
 }

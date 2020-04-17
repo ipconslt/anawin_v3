@@ -26,11 +26,12 @@ class ArticlesType extends AbstractType
 
             ])
             ->add('imageFile', VichImageType::class, [
-                'label' => 'Image mise en avant'
+                'label' => 'Image à inserrer'
             ])
             ->add('auteur')
             ->add('resume')
-            ->add('featured_image')
+            ->add('featured_image', null, 
+                    ['label'=>'Source'])
             ->add('contenu', CKEditorType::class)
    
             ->add('Publier', SubmitType::class)

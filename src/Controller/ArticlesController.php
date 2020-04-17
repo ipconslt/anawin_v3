@@ -36,7 +36,7 @@ class ArticlesController extends AbstractController
     /**
      * @Route("/", name="articles_index", methods={"GET"})
      */
-    public function index( ): Response
+    public function index(): Response
     {
         #$articles = $this->repository->findCategorie();
         $articles = $this->repository->findAll();
@@ -48,10 +48,18 @@ class ArticlesController extends AbstractController
     }
 
     /**
-     * @Route("/{slug}", name="articles_show", methods={"GET"} )
+     * @Route("/{slug}-{id}", name="articles_show", methods={"GET"},requirements={"slug":"[a-z0-9\-]*"} )
+     * @param  Articles $articles
      */
-    public function show(Articles $article, Request $request, EntityManagerInterface $manager)
+    public function show(Articles $articles, string $slug, Request $request, EntityManagerInterface $manager)
     {  
+        if($articles->getSlug() !==$slug){
+            return $this->redirectToRoute('articles_show',
+            ['id'=>$articles->getId(),
+            'slug'=>$articles->getslug()],
+            301);
+        }
+
         $comment = new Comment();
 
 //      $form = $this->createForm(CommentType::class, $comment);
@@ -75,7 +83,7 @@ class ArticlesController extends AbstractController
             ]);
     }
         return $this->render('articles/show.html.twig', [
-            'article'=>$article,
+            'articles'=>$articles,
 //          'comment'=> $comment,
             'commentForm'=> $form->createView()
         ]);

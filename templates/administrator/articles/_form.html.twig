@@ -1,0 +1,25 @@
+
+<div class="container mt-4 ">
+        {{ form_start(form) }}
+
+        <div class="row">
+            <div class="col-md-12"> {{ form_row(form.titre) }} </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-8"> {{ form_row(form.auteur) }} </div>
+            <div class="col-md-4"> {{ form_row(form.categorie) }} </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12"> {{ form_row(form.featured_image) }} </div>
+        </div>
+
+         <div class="row">
+            <div class="col-md-12"> {{ form_row(form.imageFile) }} </div>
+        </div>
+
+            {{ form_widget(form) }}
+            <button class="btn">{{ button_label|default('Enregistrer') }}</button>
+        {{ form_end(form) }}
+</div>

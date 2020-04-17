@@ -9,16 +9,34 @@ use App\Form\CategorieType;
 
 use App\Repository\ArticlesRepository;
 
+#use Doctrine\Persistence\ObjectManager;
+use Doctrine\ORM\EntityManagerInterface;
+use Psr\Log\LoggerInterface;
+
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+
 
     /**
      * @Route("/administrator/articles")
      */
     class ArticlesController extends AbstractController
 {
+   
+    
+    /**
+     * @param ArticlesRepository $repository
+     * @param ObjectManager $em
+     * @return void
+     */
+    public function __construct(ArticlesRepository $repository, EntityManagerInterface $em){
+        $this->repository=$repository;
+        $this-> em = $em;
+    }
+
+
     /**
      * @Route("/", name="articles_administrator_index",  methods={"GET"})
      */
@@ -39,14 +57,14 @@ use Symfony\Component\Routing\Annotation\Route;
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($article);
-            $entityManager->flush();
+        #    $entityManager = $this->getDoctrine()->getManager();
+            $this->em->persist($article);
+            $this->em->flush();
 
             return $this->redirectToRoute('articles_index');
         }
 
-        return $this->render('articles/new.html.twig', [
+        return $this->render('administrator/articles/new.html.twig', [
             'article' => $article,
             'form' => $form->createView(),
         ]);
@@ -61,12 +79,13 @@ use Symfony\Component\Routing\Annotation\Route;
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
+            #$this->getDoctrine()->getManager()->flush();
+            $this->em->flush();
 
             return $this->redirectToRoute('articles_index');
         }
 
-        return $this->render('articles/edit.html.twig', [
+        return $this->render('/administrator/articles/edit.html.twig', [
             'article' => $article,
             'form' => $form->createView(),
         ]);

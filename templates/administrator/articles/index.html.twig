@@ -32,10 +32,10 @@
                 <td>{{ article.categorie }}</td>
                 <td>{{ article.auteur }}</td>
                 <td>{{ article.resume }}</td>
-                <td>{{ article.createdAt ? article.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ article.createdAt ? article.createdAt|date('d/m/Y') : '' }}</td>
                 <td>
-                    <a href="{{ path('articles_show', {'id': article.id}) }}">Lire l'article</a>
-                    <a href="{{ path('articles_edit', {'id': article.id}) }}">edit</a> 
+                    <a href="{{ path('articles_show',  {id: article.id, slug: article.slug })}}" class="btn btn-primary btn-sm">Lire</a>
+                    <a href="{{ path('articles_edit',  {id: article.id, slug: article.slug }) }}" class="btn btn-info btn-sm">Edit</a> 
                 </td>
             </tr>
         {% else %}
@@ -52,7 +52,7 @@
         </br>
 <p align="right" >
     <a href="{{ path('articles_administrator_new') }}">
-      <button type="button" class="btn btn-secondary">Creer un article </button>
+      <button type="button" class="btn btn-warning btn-sm">Creer un article </button>
     
     </a>
 
