@@ -37,7 +37,12 @@
 					<li><a href="{{ path('admin_home') }}">Composantes</a></li>
 					<li><a href="{{ path('admin_home') }}">Extensions</a></li>
 					<li><a href="{{ path('contact') }}">Help</a></li>
-					<li><a class="btn" href="{{ path('fos_user_security_login') }}">SIGN IN / SIGN UP</a></li>
+										{% if not app.user %}
+						<li><a class="btn" href="{{ path('fos_user_security_login') }}">LOG IN / SIGN UP</a></li>
+					{% else %}
+						<li><a class="btn btn-secondary" href="{{ path('fos_user_security_logout') }}"> LOG OUT</a></li>
+						<li><a class="btn btn-secondary" href="{{ path('admin_home') }}" target="blank" >Admin</a></li>
+					{% endif %}
 				</ul>
 			</div><!--/.nav-collapse -->
 		</div>

@@ -48,7 +48,7 @@ use Symfony\Component\Routing\Annotation\Route;
     }
 
      /**
-     * @Route("/new", name="articles_administrator_new", methods={"GET","POST"})
+     * @Route("/article/new", name="articles_new", methods={"GET","POST"})
      */
     public function new(Request $request): Response
     {
@@ -60,8 +60,9 @@ use Symfony\Component\Routing\Annotation\Route;
         #    $entityManager = $this->getDoctrine()->getManager();
             $this->em->persist($article);
             $this->em->flush();
+            $this->addFlash('success', 'Cet article est enregistré avec Success !');
 
-            return $this->redirectToRoute('articles_index');
+            return $this->redirectToRoute('articles_administrator_index');
         }
 
         return $this->render('administrator/articles/new.html.twig', [
@@ -71,7 +72,7 @@ use Symfony\Component\Routing\Annotation\Route;
     }
 
     /**
-     * @Route("/{id}/edit", name="articles_edit", methods={"GET","POST"})
+     * @Route("/article/{id}", name="articles_edit", methods={"GET","POST"})
      */
     public function edit(Request $request, Articles $article): Response
     {
@@ -81,8 +82,9 @@ use Symfony\Component\Routing\Annotation\Route;
         if ($form->isSubmitted() && $form->isValid()) {
             #$this->getDoctrine()->getManager()->flush();
             $this->em->flush();
+            $this->addFlash('success', 'Cet article est edité avec Success !');
 
-            return $this->redirectToRoute('articles_index');
+            return $this->redirectToRoute('articles_administrator_index');
         }
 
         return $this->render('/administrator/articles/edit.html.twig', [
@@ -92,7 +94,7 @@ use Symfony\Component\Routing\Annotation\Route;
     }
 
     /**
-     * @Route("/{id}", name="articles_delete", methods={"DELETE"})
+     * @Route("/article/{id}", name="articles_delete", methods={"DELETE"})
      */
     public function delete(Request $request, Articles $article): Response
     {
@@ -100,9 +102,10 @@ use Symfony\Component\Routing\Annotation\Route;
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($article);
             $entityManager->flush();
+            $this->addFlash('success', 'Cet article est Supprimé avec Success !');
         }
 
-        return $this->redirectToRoute('articles_index');
+        return $this->redirectToRoute('articles_administrator_index');
     }
 
 }
