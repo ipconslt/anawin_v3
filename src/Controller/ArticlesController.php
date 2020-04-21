@@ -20,6 +20,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\FormBuilderInterface;
+use Knp\Component\Pager\PaginatorInterface;
 
 USE FOS\CKEditorBundle\Form\Type\CKEditorType;
 
@@ -36,10 +37,15 @@ class ArticlesController extends AbstractController
     /**
      * @Route("/", name="articles_index", methods={"GET"})
      */
-    public function index(): Response
+    public function index(PaginatorInterface $paginator, Request $request): Response
     {
         #$articles = $this->repository->findCategorie();
-        $articles = $this->repository->findAll();
+        #$articles = $this->repository->findAll();
+        $articles = $paginator->paginate(
+            $this->repository->findAll(),
+            $request->query->getInt('page', 1), /*page number*/
+           4 /*limit per page*/
+        );
 
         return $this->render('articles/index.html.twig', [
             'current_menu' => 'articles',

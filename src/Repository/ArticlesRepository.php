@@ -32,8 +32,6 @@ class ArticlesRepository extends ServiceEntityRepository
 
 
 
-
-
     // /**
     //  * @return Articles[] Returns an array of Articles objects
     //  */

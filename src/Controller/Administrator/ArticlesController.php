@@ -17,6 +17,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Knp\Component\Pager\PaginatorInterface;
 
 
     /**
@@ -40,10 +41,19 @@ use Symfony\Component\Routing\Annotation\Route;
     /**
      * @Route("/", name="articles_administrator_index",  methods={"GET"})
      */
-    public function index(ArticlesRepository $articlesRepository):Response
+    public function index(ArticlesRepository $articlesRepository, PaginatorInterface $paginator, Request $request):Response
     {
+        #$articles = $this->repository->findCategorie();
+        #$articles = $this->repository->findAll();
+        $articles = $paginator->paginate(
+            $this->repository->findAll(),
+            $request->query->getInt('page', 1), /*page number*/
+           5 /*limit per page*/
+        );
+        
         return $this->render('administrator/articles/index.html.twig', [
-            'articles' => $articlesRepository->findAll(),
+            'current_menu' => 'articles',
+            'articles' => $articles,
         ]);
     }
 
