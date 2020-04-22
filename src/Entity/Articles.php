@@ -248,9 +248,9 @@ class Articles
      * Set the value of filename
      *
      * @return  null|string $filename
-     * @return article
+     * @return articles
      */ 
-    public function setFilename(?string $filename):articles
+    public function setFilename(?string $filename):Articles
     {
         $this->filename = $filename;
 
@@ -265,7 +265,22 @@ class Articles
     {
         return $this->imageFile;
     }
+    
+    /**
+     * Set the value of imageFile
+     * @return  null|string $filename
+     * @return Articles
+     */ 
+    public function setImageFile(?file $imageFile): Articles
+    {
+        $this->imageFile = $imageFile;
 
+        if ($this->imageFile instanceof UploadedFile) {
+            $this->updated_at = new \DateTime('now');
+        }
+
+        return $this;
+    }
 
 
 
