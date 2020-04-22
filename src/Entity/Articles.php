@@ -16,7 +16,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ArticlesRepository")
- *  * @UniqueEntity("titre")
+ * @UniqueEntity("titre")
  * @Vich\Uploadable
  */
 class Articles
@@ -77,21 +77,24 @@ class Articles
      */
     private $updated_at;
 
-
     /**
+     * @var string|null 
      * @ORM\Column(type="string", length=255)
-     * @Assert\Url(
-     *    message = "The url '{{ value }}' is not a valid url",
-     * )
-     * @var string
+     * 
      */
-    private $featured_image;
+    private $filename;
 
     /**
-     * @Vich\UploadableField(mapping="featured_images", fileNameProperty="featured_image")
-     * @var File
+    *  
+     * @var file|null
+     * @Assert\Image(
+     *     mimeTypes={ "image/jpeg" })
+     * @Vich\UploadableField(mapping="articles_images", fileNameProperty="filename")
+     * 
      */
-    private $imageFile;    
+    private $imageFile;
+
+
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Categorie", inversedBy="articles")
@@ -196,31 +199,13 @@ class Articles
     }
 
 
-    public function getFeaturedImage()
-    {
-        return $this->featured_image;
-    }
 
-    public function setFeaturedImage($featured_image)
-    {
-        $this->featured_image = $featured_image;
 
-        return $this;
-    }
 
-    public function setImageFile(File $image = null)
-    {
-        $this->imageFile = $image;
-    
-        if ($image) {
-            $this->updated_at = new \DateTime('now');
-        }
-    }
-    
-    public function getImageFile()
-    {
-        return $this->imageFile;
-    }
+
+
+
+
 
 
     /**
@@ -249,6 +234,40 @@ class Articles
         return $this;
     }
     
+
+    /**
+     * Get the value of filename
+     * @return null|string
+     */ 
+    public function getFilename(): ?string
+    {
+        return $this->filename;
+    }
+
+    /**
+     * Set the value of filename
+     *
+     * @return  null|string $filename
+     * @return article
+     */ 
+    public function setFilename(?string $filename):articles
+    {
+        $this->filename = $filename;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of imageFile
+     * @return null|File
+     */ 
+    public function getImageFile(): ?File
+    {
+        return $this->imageFile;
+    }
+
+
+
 
     /**
      * @return Collection|Comment[]

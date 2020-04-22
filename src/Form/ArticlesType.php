@@ -13,6 +13,7 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 USE FOS\CKEditorBundle\Form\Type\CKEditorType;
 use Vich\UploaderBundle\Form\Type\VichImageType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 
 class ArticlesType extends AbstractType
 {
@@ -29,9 +30,12 @@ class ArticlesType extends AbstractType
                 'label' => 'Image à inserrer'
             ])
             ->add('auteur')
+
+            ->add('imageFile', FileType::class, [
+                'required' => false
+            ])
+
             ->add('resume')
-            ->add('featured_image', null, 
-                    ['label'=>'Source'])
             ->add('contenu', CKEditorType::class)
    
             ->add('Publier', SubmitType::class)
