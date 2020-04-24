@@ -88,7 +88,10 @@ class Articles
     *  
      * @var file|null
      * @Assert\Image(
-     *     mimeTypes={ "image/jpeg" })
+     *     mimeTypes={ "image/jpeg", "image/jpg", "image/png", "image/gif"},
+     *     mimeTypesMessage = "Le fichier choisi ne correspond pas à un fichier valide",
+     *     notFoundMessage = "Le fichier n'a pas été trouvé sur le disque"
+     * )
      * @Vich\UploadableField(mapping="articles_images", fileNameProperty="filename")
      * 
      */

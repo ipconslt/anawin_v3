@@ -79,7 +79,8 @@ Favoriser le développement et la croissance de la personne, en lui accordant le
     <table class="table">
         <thead class="thead-red">
             <tr>
-                <th>Titre!</th>
+                <th>Image</th>
+				<th>Titre!</th>
                 <th>Auteur</th>
                 <th>Resume</th>
                 <th>Date Création</th>
@@ -89,7 +90,12 @@ Favoriser le développement et la croissance de la personne, en lui accordant le
         <tbody>
         {% for article in articles %}
             <tr>
-                <td>{{ article.titre }}</td>
+               <td>
+					<img src="{{ asset('2.jpg' | imagine_filter('medium') ) }}" />
+					{#<img src="(/images/articles/5ea0b8c1da88e030289194.jpg | imagine_filter('thumb))" />#}
+					{# <img src="/images/articles/5ea0b8c1da88e030289194.jpg" /> #}
+			    </td>
+			    <td>{{ article.titre }}</td>
 
                 <td>{{ article.auteur }}</td>
                 <td>{{ article.resume }}</td>
