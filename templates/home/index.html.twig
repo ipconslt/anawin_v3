@@ -36,7 +36,7 @@
 				<div class="col-md-3 col-sm-6 highlight">
 					<div class="h-caption">
 						<h4>
-							<i class="fa fa-ban">
+							<i class="glyphicon glyphicon-asterisk">
 							</i> 
 							<a href="articles/1" > Espaces de solidarités </a> 
 						</h4>
@@ -71,27 +71,46 @@ Favoriser le développement et la croissance de la personne, en lui accordant le
 	<!-- /Highlights -->
 
 	<!-- container -->
-	<div class="container">
-
-		<h3 class="text-center top-space">Actualités / pauvreté en république centrafricaine</h3>
-
 <div class="container">
-    <table class="table">
+		<h3 class="text-center top-space">Actualités / pauvreté en république centrafricaine</h3>
+		</br>
+<div class="container">
+
+    <table class="table ">
         <thead class="thead-red">
             <tr>
-                <th>Image</th>
-				<th>Titre!</th>
-                <th>Auteur</th>
-                <th>Resume</th>
-                <th>Date Création</th>
-                <th>Actions</th>
+                <th>DATE</th>
+                <th>IMAGE </th>
+				<th>TITRE</th>
+                <th>RESUME</th>
+
+                <th>ACTION</th>
             </tr>
         </thead>
         <tbody>
 
         {% for article in articles %}
+
+{#  <div class="row">
+		
+		<div class="col-sm-1">{{ article.createdAt ? article.createdAt|date('d/m/Y') : '' }}</div>
+		<div class="col-sm-1"> 					{% if article.filename %}
+							<img src="{{vich_uploader_asset(article, 'imageFile') | imagine_filter('thumb') }}" >
+							{% else %}
+							<img src="{{'/images/articles/empty2.jpg'| imagine_filter('thumb') }}" alt="card-img-top" style="width: 90%; height:50%;" >                    
+						{% endif %}
+						</div>
+		<div class="col-sm-3">{{ article.titre }} </div>
+
+		<div class="col-sm-6">{{ article.resume }}</div>
+
+		<div class="col-sm-1"><a href="{{ path('articles_show', {id: article.id, slug: article.slug }) }}" class="btn btn-warning btn-sm">Lire </a></div>
+</div> #}
+
             <tr>
-               <td>
+               
+                <td>{{ article.createdAt ? article.createdAt|date('d/m/Y') : '' }}</td>
+			   <td>
 					{% if article.filename %}
 							<img src="{{vich_uploader_asset(article, 'imageFile') | imagine_filter('thumb') }}"  alt="card-img-top" style="width: 100%; height:auto;" >
 							{% else %}
@@ -100,22 +119,22 @@ Favoriser le développement et la croissance de la personne, en lui accordant le
 			    </td>
 			    <td>{{ article.titre }}</td>
 
-                <td>{{ article.auteur }}</td>
                 <td>{{ article.resume }}</td>
-                <td>{{ article.createdAt ? article.createdAt|date('d/m/Y') : '' }}</td>
+
                 <td>
                     <a href="{{ path('articles_show', {id: article.id, slug: article.slug }) }}" class="btn btn-warning btn-sm">Lire </a>
                   {#  <a href="{{ path('articles_edit', {'id': article.id}) }}">Editer</a> #}
                 </td>
             </tr>
+			
         {% endfor %}
         </tbody>
     </table>
-
+	     <div class="pagination">
+        {{ knp_pagination_render(articles) }}
+   		 </div>
  </div>
-		
 </div>	<!-- /container -->
-	
 	<!-- Social links. @TODO: replace by link/instructions in template -->
 	<section id="social">
 		<div class="container">

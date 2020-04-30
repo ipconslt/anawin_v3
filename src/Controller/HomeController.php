@@ -11,6 +11,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Knp\Component\Pager\PaginatorInterface;
 
 
 
@@ -27,9 +28,13 @@ use Symfony\Component\HttpFoundation\Response;
      * @param mixed 
      * @return Response
      */
-    public function index( ): Response
+    public function index(PaginatorInterface $paginator, Request $request ): Response
     {
-         $articles = $this->repository->findAll();
+         $articles = $paginator->paginate(
+            $this->repository->findAll(),
+            $request->query->getInt('page', 1), /*page number*/
+           5 /*limit per page*/
+        );
          
          return $this->render('home/index.html.twig', [
             'current_menu' => 'home', 
