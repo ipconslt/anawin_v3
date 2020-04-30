@@ -88,7 +88,7 @@ class Articles
     *  
      * @var file|null
      * @Assert\Image(
-     *     mimeTypes={ "image/jpeg", "image/jpg", "image/png", "image/gif"},
+     *     mimeTypes={ "image/jpeg", "image/jpg", "image/gif"},
      *     mimeTypesMessage = "Le fichier choisi ne correspond pas à un fichier valide",
      *     notFoundMessage = "Le fichier n'a pas été trouvé sur le disque"
      * )
@@ -200,13 +200,6 @@ class Articles
 
         return $this;
     }
-
-
-
-
-
-
-
 
 
 

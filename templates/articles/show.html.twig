@@ -4,6 +4,12 @@
 
 {% block body %}
     <div class = "jumbotron">
+
+                        {% if articles.filename %}
+                        <img src="{{vich_uploader_asset(articles, 'imageFile') | imagine_filter('thumb') }}" alt="card-img-top" style="width: 10%; height:10%;" >
+                        {% else %}
+                        <img src="{{'/images/properties/empty2.jpg'| imagine_filter('thumb') }}" alt="card-img-top" style="width: 90%; height:50%;" >                    
+                    {% endif %}
         </br> </br> </br> </br>
         <h3 style="text-align:left"> {{ articles.titre }} </h3>
         <tr>
@@ -28,7 +34,7 @@
 
 
             </br> 
-                <img src="{{ vich_uploader_asset(articles, 'imageFile')}}" alt="{{ articles.titre }}">
+                <img src="{{ vich_uploader_asset(articles, 'imageFile') | imagine_filter('medium') }}" alt="{{ articles.titre }}">
 
                 </br> </br>
                 <strong>

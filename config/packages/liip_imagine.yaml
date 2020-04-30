@@ -4,14 +4,19 @@ liip_imagine:
     driver: "gd"
     filter_sets :
         thumb :
-            quality : 50
+            # adjust the image quality to 75%
+            quality : 75
+
+            # list of transformations to apply (the "filters")
             filters :
                 thumbnail:
-                    size : [160, 130]
-                    mode:   outbond
+                    size : [360, 230]
         medium :
-            quality : 1000
+            # adjust the image quality to 75%
+            quality : 70
+            # list of transformations to apply (the "filters")
             filters :
                 thumbnail:
-                    size : [800, 300]
-                    mode:   outbond               
+                    size : [700, 300]
+                    mode:   outbond
+

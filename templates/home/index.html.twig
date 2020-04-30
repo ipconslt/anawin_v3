@@ -88,12 +88,15 @@ Favoriser le développement et la croissance de la personne, en lui accordant le
             </tr>
         </thead>
         <tbody>
+
         {% for article in articles %}
             <tr>
                <td>
-					<img src="{{ asset('2.jpg' | imagine_filter('medium') ) }}" />
-					{#<img src="(/images/articles/5ea0b8c1da88e030289194.jpg | imagine_filter('thumb))" />#}
-					{# <img src="/images/articles/5ea0b8c1da88e030289194.jpg" /> #}
+					{% if article.filename %}
+							<img src="{{vich_uploader_asset(article, 'imageFile') | imagine_filter('thumb') }}"  alt="card-img-top" style="width: 100%; height:auto;" >
+							{% else %}
+							<img src="{{'/images/articles/empty2.jpg'| imagine_filter('thumb') }}" alt="card-img-top" style="width: 90%; height:50%;" >                    
+						{% endif %}
 			    </td>
 			    <td>{{ article.titre }}</td>
 
