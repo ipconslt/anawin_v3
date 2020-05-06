@@ -1,0 +1,66 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Equipe{% endblock %}
+
+{% block body %}
+    <h1>Equipe</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ equipe.id }}</td>
+            </tr>
+            <tr>
+                <th>Noms</th>
+                <td>{{ equipe.noms }}</td>
+            </tr>
+            <tr>
+                <th>Prenoms</th>
+                <td>{{ equipe.prenoms }}</td>
+            </tr>
+            <tr>
+                <th>Surnoms</th>
+                <td>{{ equipe.surnoms }}</td>
+            </tr>
+            <tr>
+                <th>Fonction</th>
+                <td>{{ equipe.fonction }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ equipe.email }}</td>
+            </tr>
+            <tr>
+                <th>Adresse</th>
+                <td>{{ equipe.adresse }}</td>
+            </tr>
+            <tr>
+                <th>Region</th>
+                <td>{{ equipe.region }}</td>
+            </tr>
+            <tr>
+                <th>Ville</th>
+                <td>{{ equipe.ville }}</td>
+            </tr>
+            <tr>
+                <th>Pays</th>
+                <td>{{ equipe.pays }}</td>
+            </tr>
+            <tr>
+                <th>Telephone</th>
+                <td>{{ equipe.telephone }}</td>
+            </tr>
+            <tr>
+                <th>Website</th>
+                <td>{{ equipe.website }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('equipe_index') }}">back to list</a>
+
+    <a href="{{ path('equipe_edit', {'id': equipe.id}) }}">edit</a>
+
+    {{ include('equipe/_delete_form.html.twig') }}
+{% endblock %}

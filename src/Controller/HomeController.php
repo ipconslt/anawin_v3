@@ -74,7 +74,7 @@ use Knp\Component\Pager\PaginatorInterface;
      */
     public function page()
     {
-        return $this->render('page_right.html.twig', [
+        return $this->render('menus/_right.html.twig', [
             'controller_name' => 'HomeController',
         ]);
     }

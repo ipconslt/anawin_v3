@@ -1,0 +1,60 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Articles index{% endblock %}
+
+{% block body %}
+        <div class = "jumbotron">
+            </br>
+            </br>
+            </br>
+            </br>
+            <h3 style="text-align:left"> Articles / Index </h3>
+        </div>
+
+<div class="container">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Titre</th>
+                <th>Categorie</th>
+                <th>Auteur</th>
+                <th>Resume</th>
+                <th>Date Création</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for article in articles %}
+            <tr>
+                <td>{{ article.id }}</td>
+                <td>{{ article.titre }}</td>
+                <td>{{ article.categorie }}</td>
+                <td>{{ article.auteur }}</td>
+                <td>{{ article.resume }}</td>
+                <td>{{ article.createdAt ? article.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>
+                    <a href="{{ path('articles_show', {'id': article.id}) }}">Lire </a> //
+                    <a href="{{ path('articles_edit', {'id': article.id}) }}">Editer</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="9">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+        </br>
+        </br>
+        </br>
+        </br>
+        </br>
+<p align="right" >
+    <a href="{{ path('articles_administrator_new') }}">
+      <button type="button" class="btn btn-secondary">Creer un article </button>
+    
+    </a>
+
+ </div>
+{% endblock %}

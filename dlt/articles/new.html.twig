@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+{% form_theme form 'bootstrap_4_layout.html.twig' %}
+
+{% block title %}New Articles{% endblock %}
+
+{% block body %}
+        <div class = "jumbotron">
+            </br>
+            </br>
+            </br>
+            </br>
+            <h3 style="text-align:left"> Articles / Enregistrement </h3>
+        </div>
+
+<div class="container">
+    {{ include('articles/_form.html.twig') }}
+
+    <a href="{{ path('articles_index') }}">back to list</a>
+
+ </div>
+{% endblock %}

@@ -1,6 +1,6 @@
-{% extends "base.html.twig" %}
+{% extends 'base.html.twig' %}
 
-{% block title %}A propos| {{ parent()}} {% endblock %}
+{% block title %}Articles index{% endblock %}
 
 {% block body %}
         <div class = "jumbotron">
@@ -8,63 +8,51 @@
             </br>
             </br>
             </br>
-            <h3 style="text-align:left"> Anawin / A propos de l'organisation </h3>
-            
+            <h3 style="text-align:left"> Articles / Index </h3>
         </div>
 
 <div class="container">
-</br>
-</br>
+   
+	<!-- container -->
+<div class="container">
 
-  <div class="container  bg-info text-white">
-    <h1 class="display-4">Fluid jumbotron</h1>
-    <p>Nous avons débuté nos interventions en juillet 2006 auprès d'une trentaine d'orphelins scolarisés à l'école Kémbé ligne (communauté protestante) et l'école privée Antoine Marie (communauté catholique) à Bangassou (dans la Préfecture du MBOMOU en Centrafrique), par le paiement des frais de scolarité de ces orphelins; la prise en charge de la rémunération de 2 maitres parents,  ainsi que l'aide aux pauvres de la ville.
 
-Pour anecdote, j'avais alloué un budget pour le maintien d'une vie confortable à mon père retraité de la fonction publique. A son décès, j'ai choisi  d'administrer ce budget aux ANAWIM de la localité.
+  <div class="row">
+		</br></br>
 
-Le 13 mars 2019, lors de mon séjour dans cette localité à 720 kms de la capitale, vers 17h30, j'entendis la responsable de l'unique orphelinat de la ville se plaindre. je sortis et vis un Monsieur sur une moto , une dame et un bébé Ce bébé a perdu sa maman juste après sa naissance et cette femme qui se dit voisine de la famille aurait loué la moto pour emmener ce bébé à l' orphelinat de la localité, à plus de 100 kms du lieu de décès de la mère. Pour la Directrice, c'était le 4ème bébé de la journée. La Directrice m'expliquât que l'orphelinat dispose encore des places pour des enfants plus grands. Ils n'ont pas de lait de nourrissons et les moyens alloués par l'église catholique ne leur permettent pas de prendre des bébés: une boîte de lait nourrisson revient à 12€ pour une semaine. Elle n'a pas été en mesure de prendre les 3 bébés orphelins de la journée. Les associations humanitaires en place ont des laits uniquement pour les mal nutris. On vient de lui apporter un message du décès d'un des 3 bébés sur le chemin du retour des parents. La dame qui est venue avec le bébé sur la moto expliquait que celui-ci risquait d'être enterré avec sa maman car aucun membre de la famille n'a voulu s'engager pour prendre ce bébé..</p>
-  </div>
+		<div class="col-sm-2"> IMAGE</div>
+		<div class="col-sm-2"> TITRE </div>
+		<div class="col-sm-5">RESUME </div>
+		<div class="col-sm-1"></div>
+</div>
 
-    <table class="table">
-        <thead>
-            <tr>
-
-                <th>Titre</th>
-                <th>Auteur</th>
-                <th>Resume</th>
-                <th>Date Création</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
         {% for article in articles %}
-            <tr>
-                <td>{{ article.titre }}</td>
-                <td>{{ article.auteur }}</td>
-                <td>{{ article.resume }}</td>
-                <td>{{ article.createdAt ? article.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>
-                    <a href="{{ path('articles_show', {id: article.id, slug: article.slug }) }}">Lire </a> //
-                    <a href="{{ path('articles_edit', {id: article.id, slug: article.slug }) }}">Editer</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="9">no records found</td>
-            </tr>
+
+  <div class="row">
+		</br>
+		<div class="col-sm-2"> 					{% if article.filename %}
+							<img src="{{vich_uploader_asset(article, 'imageFile') | imagine_filter('thumb') }}" >
+							{% else %}
+							<img src="{{'/images/articles/empty2.jpg'| imagine_filter('thumb') }}" alt="card-img-top"  >                    
+						{% endif %}
+						</div>
+		<div class="col-sm-2">{{ article.titre }} </div>
+
+		<div class="col-sm-5">{{ article.resume }}</div>
+
+		<div class="col-sm-1"><a href="{{ path('articles_show', {id: article.id, slug: article.slug }) }}" class="btn btn-warning btn-sm">Lire </a></div>
+</div>
+
+
+			
         {% endfor %}
-        </tbody>
-    </table>
         </br>
         </br>
         </br>
         </br>
         </br>
-<p align="right" >
-    <a href="{{ path('articles_new') }}">
-      <button type="button" class="btn btn-secondary">Creer un article </button>
     
-    </a>
+</div> 
 
  </div>
 {% endblock %}

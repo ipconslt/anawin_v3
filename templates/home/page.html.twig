@@ -3,8 +3,13 @@
 {% block title %}Articles{% endblock %}
 
 {% block body %}
-    <div class = "jumbotron">
+<div class = "jumbotron">
 
+                        {% if articles.filename %}
+                        <img src="{{vich_uploader_asset(article, 'imageFile') | imagine_filter('thumb') }}" alt="card-img-top" style="width: 10%; height:10%;" >
+                        {% else %}
+                        <img src="{{'/images/properties/empty2.jpg'| imagine_filter('thumb') }}" alt="card-img-top" style="width: 90%; height:50%;" >                    
+                    {% endif %}
         </br> </br> </br> </br>
         <h3 style="text-align:left"> {{ articles.titre }} </h3>
         <tr>
@@ -23,46 +28,21 @@
             </tr>
     </div>
 
+
 <!-- container -->
 <div class="container">
-
 
 	<!-- Article main content -->
 	<article class="col-md-8 maincontent">
 
 
-            </br> 
-                <img src="{{ vich_uploader_asset(articles, 'imageFile') | imagine_filter('medium') }}" alt="{{ articles.titre }}">
 
-                </br> </br>
-                <strong>
-                    {{ articles.resume }}
-                </strong>
-
-                </br> </br>
-              
-                {{articles.contenu | nl2br }}
-                </br> </br> </br> </br>
 
 
             <section id="commentaires">
                 <button type="button" class="btn btn-primary btn-lg btn-block"> LES COMMENTAIRES  </button>
-                <p class="bg-primary text-white">Total Commentaires = {{articles.comments | length}} </p>
+      
 
-
-                {% for comment in articles.comments %}
-                    <div class="comment">
-                        <div class="row">
-                            <div class="col">
-                                {{comment.auteur }}{{ comment.createdAt | date('d/m/Y � H:i') }}</small>)
-                            </div>
-                            <div class="col">
-                                {{ comment.content |raw }}
-                            </div>
-                            </br>
-                        </div>
-                    </div>
-                {% endfor %}
     
                 <p class="bg-primary text-white">Ajouter votre commentaire  </p>
                     {% if app.user %}
@@ -75,15 +55,13 @@
                     {% else%}
                         <h4> Vous ne pouvez pas commenter sans etre connecté</h4>
                         <a href="{{path('easyadmin') }}" class="btn btn-primary"> Connexion </a>
-                      
                     {% endif %}
-
-
-            </section>  
-            	</article>
+            </section>   
+	</article>
 	<!-- /Article -->
 
-    
+
+
     <!-- Sidebar -->
 	<aside class="col-md-4 sidebar sidebar-right">
             
@@ -145,8 +123,7 @@
                 </div>
 
 	</aside>
-           
-            </div>
-            
+    </div>
+    </div>
 	
 {% endblock %}

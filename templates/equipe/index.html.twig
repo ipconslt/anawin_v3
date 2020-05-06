@@ -1,20 +1,55 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello EquipeController!{% endblock %}
+{% block title %}Equipe index{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+    <h1>Equipe index</h1>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Noms</th>
+                <th>Prenoms</th>
+                <th>Surnoms</th>
+                <th>Fonction</th>
+                <th>Email</th>
+                <th>Adresse</th>
+                <th>Region</th>
+                <th>Ville</th>
+                <th>Pays</th>
+                <th>Telephone</th>
+                <th>Website</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for equipe in equipes %}
+            <tr>
+                <td>{{ equipe.id }}</td>
+                <td>{{ equipe.noms }}</td>
+                <td>{{ equipe.prenoms }}</td>
+                <td>{{ equipe.surnoms }}</td>
+                <td>{{ equipe.fonction }}</td>
+                <td>{{ equipe.email }}</td>
+                <td>{{ equipe.adresse }}</td>
+                <td>{{ equipe.region }}</td>
+                <td>{{ equipe.ville }}</td>
+                <td>{{ equipe.pays }}</td>
+                <td>{{ equipe.telephone }}</td>
+                <td>{{ equipe.website }}</td>
+                <td>
+                    <a href="{{ path('equipe_show', {'id': equipe.id}) }}">show</a>
+                    <a href="{{ path('equipe_edit', {'id': equipe.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="13">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/wamp64/www/symfony/cslt/anawin/sites/anawin_v3/src/Controller/EquipeController.php'|file_link(0) }}">src/Controller/EquipeController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/wamp64/www/symfony/cslt/anawin/sites/anawin_v3/templates/equipe/index.html.twig'|file_link(0) }}">templates/equipe/index.html.twig</a></code></li>
-    </ul>
-</div>
+    <a href="{{ path('equipe_new') }}">Create new</a>
 {% endblock %}

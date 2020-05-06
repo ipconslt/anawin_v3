@@ -3,87 +3,27 @@
 {% block title %}Articles{% endblock %}
 
 {% block body %}
-    <div class = "jumbotron">
+<div class = "jumbotron">
 
         </br> </br> </br> </br>
-        <h3 style="text-align:left"> {{ articles.titre }} </h3>
-        <tr>
-            <th>Categorie:  </th>
-            <td>{{ articles.categorie }}</td>
-        </tr>
-        </br>
-        <tr>
-            <th>Auteur :</th>
-                <td>{{ articles.auteur }}</td>
-        </tr>
-        </br>
-            <tr>
-                <th>Date Création</th>
-                {{ articles.createdAt ? articles.createdAt|date('Y-m-d H:i:s') : '' }}
-            </tr>
+
     </div>
+
 
 <!-- container -->
 <div class="container">
-
 
 	<!-- Article main content -->
 	<article class="col-md-8 maincontent">
 
 
-            </br> 
-                <img src="{{ vich_uploader_asset(articles, 'imageFile') | imagine_filter('medium') }}" alt="{{ articles.titre }}">
-
-                </br> </br>
-                <strong>
-                    {{ articles.resume }}
-                </strong>
-
-                </br> </br>
-              
-                {{articles.contenu | nl2br }}
-                </br> </br> </br> </br>
 
 
-            <section id="commentaires">
-                <button type="button" class="btn btn-primary btn-lg btn-block"> LES COMMENTAIRES  </button>
-                <p class="bg-primary text-white">Total Commentaires = {{articles.comments | length}} </p>
-
-
-                {% for comment in articles.comments %}
-                    <div class="comment">
-                        <div class="row">
-                            <div class="col">
-                                {{comment.auteur }}{{ comment.createdAt | date('d/m/Y � H:i') }}</small>)
-                            </div>
-                            <div class="col">
-                                {{ comment.content |raw }}
-                            </div>
-                            </br>
-                        </div>
-                    </div>
-                {% endfor %}
-    
-                <p class="bg-primary text-white">Ajouter votre commentaire  </p>
-                    {% if app.user %}
-                        {{ form_start(commentForm) }}
-                        {{form_row(commentForm.auteur, {'attr':{'placeholder': "votre nom"}})}}
-                        {{form_row(commentForm.content, {'attr':{'placeholder': "votre commentaire"} })}}
-                        <button type="submit" class"btn btn-success"> Commentez </button>
-                        {{ form_end(commentForm) }}
-
-                    {% else%}
-                        <h4> Vous ne pouvez pas commenter sans etre connecté</h4>
-                        <a href="{{path('easyadmin') }}" class="btn btn-primary"> Connexion </a>
-                      
-                    {% endif %}
-
-
-            </section>  
-            	</article>
+	</article>
 	<!-- /Article -->
 
-    
+
+
     <!-- Sidebar -->
 	<aside class="col-md-4 sidebar sidebar-right">
             
@@ -145,8 +85,7 @@
                 </div>
 
 	</aside>
-           
-            </div>
-            
+    </div>
+    </div>
 	
 {% endblock %}
