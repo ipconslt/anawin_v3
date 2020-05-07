@@ -69,12 +69,9 @@
                         <th>Website</th>
                         <td>{{ equipe.website }}</td>
                     </tr>
-                    
                 </tbody>
-                
             </table>
         </article>
-        
         <!-- /Article -->
 
     
@@ -86,7 +83,10 @@
 </div>
             
 	
-    <a  href="{{ path('equipe_index') }}" class="btn btn-primary btn-sm"> Liste des Membres </a>
+    <a href="{{ path('equipe_administrator_index') }}" class="btn btn-primary btn-sm">Liste des Membres </a>
 
+    <a href="{{ path('equipe_administrator_edit', {'id': equipe.id}) }}" class="btn btn-info btn-sm">edit</a>
+
+    {{ include('administrator/equipe/_delete_form.html.twig') }}
 </div>
 {% endblock %}

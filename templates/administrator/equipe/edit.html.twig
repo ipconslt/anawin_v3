@@ -1,0 +1,20 @@
+{% extends 'base_adm.html.twig' %}
+
+{% form_theme form 'bootstrap_4_layout.html.twig' %}
+
+{% block title %}Edit Equipe{% endblock %}
+
+{% block body %}
+    {{ include('administrator/tools/_entete-admin.html.twig') }}
+
+    <div class="container">
+        
+        <h3>Edition du Membre {{ equipe.noms }}, {{ equipe.fonction }}</h1>
+
+        {{ include('administrator/equipe/_form.html.twig', {'button_label': 'Mettre à jour'}) }}
+
+        {#<a href="{{ path('equipe_administrator_index') }}" class="btn btn-primary btn-sm">LIste des Membres</a>#}
+
+
+    </div>
+{% endblock %}

@@ -1,0 +1,19 @@
+{% extends 'base_adm.html.twig' %}
+
+{% form_theme form 'bootstrap_4_layout.html.twig' %}
+
+{% block title %} MEmbre Equipe{% endblock %}
+
+{% block body %}
+    {{ include('administrator/tools/_entete-admin.html.twig') }}
+
+<div class="container">
+
+    <h3>Nouveau Membre </h3>
+
+    {{ include('administrator/equipe/_form.html.twig') }}
+
+    
+    {# <a href="{{ path('equipe_administrator_index') }}" class="btn btn-info">Liste des Membres</a>#}
+</div>
+{% endblock %}

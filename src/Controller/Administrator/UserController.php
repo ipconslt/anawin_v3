@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Administrator;
 
 use App\Entity\User;
 use App\Form\UserType;
@@ -17,7 +17,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
 /**
- * @Route("/admin/user")
+ * @Route("/administrator")
  */
 class UserController extends AbstractController
 {
@@ -35,7 +35,7 @@ class UserController extends AbstractController
 
 
     /**
-     * @Route("/users", name="users")
+     * @Route("/users", name="abonnes_administrator_admin")
      */
     public function utilisateur()
     {

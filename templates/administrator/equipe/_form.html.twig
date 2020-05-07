@@ -1,0 +1,43 @@
+<div class="container mt-4 ">
+
+    {{ form_start(form) }}
+    </br>
+    </br>
+
+
+        <div class="row">
+            <div class="col-md-5"> {{ form_row(form.noms) }} </div>
+            <div class="col-md-5"> {{ form_row(form.prenoms) }} </div>
+            <div class="col-md-2"> {{ form_row(form.surnoms) }} </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-8"> {{ form_row(form.fonction) }} </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6"> {{ form_row(form.adresse) }} </div>
+            <div class="col-md-2"> {{ form_row(form.region) }} </div>
+            <div class="col-md-2"> {{ form_row(form.ville) }} </div>
+            <div class="col-md-2"> {{ form_row(form.pays) }} </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6"> {{ form_row(form.email) }} </div>
+            <div class="col-md-6"> {{ form_row(form.telephone) }} </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-8"> {{ form_row(form.website) }} </div>
+        </div>
+
+
+</br>
+        {# <button class="btn btn-primary">{{ button_label|default('Enregistrez') }}</button> #}
+    <td>
+         <button class="btn btn-primary">{{ button_label|default('Enregistrez') }}</button>
+        <a href="{{ path('equipe_administrator_index') }}" class="btn btn-info">Liste des Membres</a>
+    </td>
+
+    {{ form_end(form) }}
+</div>
