@@ -4,15 +4,12 @@
 
 {% block body %}
 
-    <div class = "jumbotron">
-            </br>
-            </br>
-            </br>
-            </br>
-            <h3 style="text-align:left"> Utilisateurs / Index </h3>
-    </div>
+    {{ include('administrator/tools/_entete-admin.html.twig') }}
 
     <div class="container">
+
+        <h3> Liste Abonnés </h3>
+        <br><br>
 
     <table class="table">
 
@@ -23,8 +20,8 @@
                 <th>Utilisateurs</th>
                 <th>Email</th>
                 <th>Activé</th>
-                <th>Connexion</th>
                 <th>Roles</th>
+                <th>Connexion</th>
 
                 <th>Nombre</th>
                 <th>actions</th>
@@ -37,8 +34,8 @@
                 <td>{{ user.username }}</td>
                 <td>{{ user.email }}</td>
                 <td>{{ user.enabled ? 'Yes' : 'No' }}</td>
-                <td>{{ user.lastLogin ? user.lastLogin|date('Y-m-d H:i:s') : '' }}</td>
                 <td>{{ user.roles ? user.roles|join(', ') : '' }}</td>
+                <td>{{ user.lastLogin ? user.lastLogin|date('Y-m-d H:i:s') : '' }}</td>
                 <td>{{ user.nombre }}</td>
                 <td>
                    {# <a href="{{ path('user_show', {'id': user.id}) }}">show</a>#} 
