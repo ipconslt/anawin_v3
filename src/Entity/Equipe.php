@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Cocur\Slugify\Slugify;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\EquipeRepository")
@@ -206,5 +207,15 @@ class Equipe
         $this->website = $website;
 
         return $this;
+    }
+
+    public function getSlug(): string
+    {
+       /*
+        $slugify = new Slugify();
+        echo $slugify->slugify('Hello World!'); // hello-world
+        */
+
+        return (new Slugify())-> slugify($this->noms);
     }
 }

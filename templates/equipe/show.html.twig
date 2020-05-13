@@ -1,5 +1,7 @@
 {% extends 'base.html.twig' %}
 
+{% form_theme form 'bootstrap_4_layout.html.twig' %}
+
 {% block title %}Equipe{% endblock %}
 
 {% block body %}
@@ -73,6 +75,31 @@
                 </tbody>
                 
             </table>
+              <HR noshade size="10%" width="100%" align="center">
+
+    
+    
+        <h3>Contacter / {{ equipe.noms }}, {{ equipe.fonction }}</h3>
+        </br>
+
+             <div id="contactform" class"mt-4"{% if not form.vars.submitted %} style="display: block" {% endif %}>
+                {{ form_start(form)}}
+                <div class="row">
+                    <div class="col-md-6">{{ form_row(form.firstname) }}</div>
+                    <div class="col-md-6">{{ form_row(form.lastname) }}</div>
+                </div>
+                 <div class="row">
+                    <div class="col-md-6">{{ form_row(form.phone) }}</div>
+                    <div class="col-md-6">{{ form_row(form.email) }}</div>
+                </div>
+                {{ form_rest(form)}}
+                  <div class="form-group">
+                        <button class="btn btn-primary"> Envoyez </button>
+                    </div>
+                {{ form_end(form)}}
+                
+            </div>
+
         </article>
         
         <!-- /Article -->
@@ -89,4 +116,5 @@
     <a  href="{{ path('equipe_index') }}" class="btn btn-primary btn-sm"> Liste des Membres </a>
 
 </div>
+           
 {% endblock %}

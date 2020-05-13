@@ -20,10 +20,12 @@ class ContactType extends AbstractType
             ->add('lastname', TextType::class)
             ->add('phone', TextType::class)
             ->add('email', EmailType::class)
-            ->add('message', TextareaType::class)
-            ->add( 'captcha', RecaptchaSubmitType ::class, [
-                'label' => 'Envoyer'
-            ])
+            ->add('message', TextareaType::class, [
+                    'attr' => ['cols' => '1000', 'style' => "width:500; display:block"],
+                    ])
+         /*->add( 'captcha', RecaptchaSubmitType ::class, [
+                'label' => 'Envoyer' 
+            ])*/
         ;
     }
 

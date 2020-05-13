@@ -39,7 +39,7 @@
                 <td>{{ equipe.pays }}</td>
 
                 <td>
-                    <a href="{{ path('equipe_show', {'id': equipe.id}) }}" class="btn btn-primary btn-sm"> Lire </a>
+                    <a href="{{ path('equipe_show', {'id': equipe.id,  slug: equipe.slug }) }}" class="btn btn-primary btn-sm"> Lire </a>
                 </td>
             </tr>
         {% else %}
