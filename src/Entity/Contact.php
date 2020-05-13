@@ -48,9 +48,9 @@ class Contact
     private $email;
 
     /**
-     * @var property|null
+     * @var equipe|null
      */
-    private $property;
+    private $equipe;
 
     /**
      * @var string|null
@@ -162,25 +162,25 @@ class Contact
     }
 
     /**
-     * Get the value of property
+     * Get the value of equipe
      *
-     * @return  property|null
+     * @return  equipe|null
      */ 
-    public function getProperty()
+    public function getEquipe()
     {
-        return $this->property;
+        return $this->equipe;
     }
 
     /**
-     * Set the value of property
+     * Set the value of equipe
      *
-     * @param  property|null  $property
+     * @param  equipe|null  $equipe
      *
      * @return  self
      */ 
-    public function setProperty($property)
+    public function setEquipe($equipe)
     {
-        $this->property = $property;
+        $this->equipe = $equipe;
 
         return $this;
     }
