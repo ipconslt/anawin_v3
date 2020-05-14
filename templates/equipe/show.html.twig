@@ -17,6 +17,18 @@
 
     <!-- container -->
     <div class="container">
+
+        {% for message in app.flashes('success') %}
+            <div class="alert alert-success">
+                {{ message }}
+            </div>
+        {% endfor %}
+
+        {% if not form.vars.valid %}
+                <div class="alert alert-danger">
+                    Ce message n'apas été envoyé , veuillez respecter les champs obligatoires
+                </div>
+        {% endif %}
     
         <h3>Identification / {{ equipe.noms }}, {{ equipe.fonction }}</h3>
         </br>

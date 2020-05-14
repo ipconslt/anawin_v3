@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Our Contact Form{% endblock title %}
+
+{% block body %}
+
+    <div>
+  <h1>Nouveau contact</h1>
+  <p>Nom : {{contact.firstname}}</p>
+  <p>Prenoms : {{contact.lastname}}</p>
+  <p>Téléphone : {{contact.phone}}</p>
+  <p>e-mail : {{contact.email}}</p>
+  <p>Message : {{contact.message|raw}}</p>
+    </div>
+
+{% endblock %}

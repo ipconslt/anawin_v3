@@ -13,9 +13,9 @@ class ContactAlerte{
     }
     
     public function alerte(Contact $contact){
-        /*
-        $message = (new \Swift_Message('Agence:' . $contact->getEquipe()->getNom()))
-        ->setFrom('noreply@iapalkot@-gmail.com')
+        
+        $message = (new \Swift_Message('Agence:' . $contact->getEquipe()->getNoms()))
+        ->setFrom('noreply@gmail.com')
         ->setTo('noreply@anawin-mbomou.org')
         ->setReplyTo($contact->getEmail())
         ->setBody($this->renderer->render(
@@ -24,7 +24,7 @@ class ContactAlerte{
                     'contact' => $contact
                 ]), 'text/html'
             );
-                $this->mailer->send($message);*/
+                $this->mailer->send($message);
     }
 }
 

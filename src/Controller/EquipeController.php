@@ -55,10 +55,10 @@ class EquipeController extends AbstractController
             $alert->alerte($contact);
             $this->addFlash('success', 'votre Email a été envoyé avec succès!');
            
-          /* return $this->redirectToRoute('equipe_show', [
+           return $this->redirectToRoute('equipe_show', [
                 'id' => $equipe->getId(),
                 'slug' => $equipe->getSlug() 
-                ]);*/
+                ]);
         }
                  
         return $this->render('equipe/show.html.twig', [
