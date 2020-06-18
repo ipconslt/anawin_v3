@@ -33,7 +33,6 @@
         <h3>Identification / {{ equipe.noms }}, {{ equipe.fonction }}</h3>
         </br>
 
-
         <!-- Article main content -->
         <article class="col-md-8 maincontent">
 
@@ -93,8 +92,10 @@
     
         <h3>Contacter / {{ equipe.noms }}, {{ equipe.fonction }}</h3>
         </br>
-
-             <div id="contactform" class"mt-4"{% if not form.vars.submitted %} style="display: block" {% endif %}>
+        <a href="#" class="btn btn-primary" id="contactButton" {% if form.vars.submitted %} style="display: none" {% endif %}>  Contacter / {{ equipe.noms }}, {{ equipe.fonction }}</a>
+            
+         <div id="contactform" class"mt-4"{% if not form.vars.submitted %} style="display: block" {% endif %}>
+     
                 {{ form_start(form)}}
                 <div class="row">
                     <div class="col-md-6">{{ form_row(form.firstname) }}</div>

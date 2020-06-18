@@ -5,13 +5,16 @@ namespace App\Controller\Administrator;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 
+
 /**
-* @Route("/administrator")
-*/
+ * @Route("/administrator", name="administrator_")
+ */
+
 class AdminController extends AbstractController
 {
     /**
-     * @Route("/admin", name="admin_home")
+     * @Route("/", name="home")
+     *  @Route("/home", name="home")
      */
     public function index()
     {

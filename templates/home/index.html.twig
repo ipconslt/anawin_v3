@@ -3,7 +3,6 @@
 {% block title %}Accueil | {{ parent()}} {% endblock %}
 
 {% block body %}
-
 	<!-- Header -->
 	<header id="head">
 		<div class="container">
@@ -13,7 +12,7 @@
 				<p> Une Solidarité pour les pauvres du MBOMOU ! </p>
 				</br>
 				</br>
-				<p><a href="articles/1" class="btn btn-default btn-lg" role="button">PLUS D'INFO</a> <a class="btn btn-action btn-lg" role="button">CONTACTEZ-NOUS</a></p>
+				<p><a href="{{ path('home_page') }}"class="btn btn-default btn-lg" role="button">PLUS D'INFO</a> <a href="{{ path('home_contact') }}" class="btn btn-action btn-lg" role="button">CONTACTEZ-NOUS</a></p>
 			</div>
 		</div>
 	</header>
@@ -22,10 +21,10 @@
 	<!-- Intro -->
 	<div class="container text-center">
 		<br> <br>
-		<h2 class="thin"> A l’école des « anawim » de l’Evangile </h2>
-		<p class="text-muted">
-		Je prends le temps de reconnaître ce qui m'empêche d'accueillir le don de Dieu : des peurs, des certitudes, des opinions, des comportements mortifères, de mauvaises loyautés, des dépendances sous toutes ses formes, des besoins de reconnaissance, des difficultés à pardonner, des relations qui ne m'élèvent pas... etc. Je les dépose ce matin dans la prière à Joseph et je lui demande de m'aider à devenir pauvre à son image.
-		</p>
+		<h2 class="thin text-center"> A l’école des « anawim » de l’Evangile </h2>
+		<h4 class="text-dark text-justify">
+		Je prends le temps de reconnaître ce qui m'empêche d'accueillir le don de Dieu : des peurs, des certitudes, des opinions, des comportements mortifères, de mauvaises loyautés, des dépendances sous toutes ses formes, des besoins de reconnaissance, des difficultés à pardonner, des relations qui ne m'élèvent pas... etc. Je les dépose ce matin dans la prière à Joseph et je lui demande de m'aider à devenir pauvre à son image ()...
+		</h4>
 	</div>
 	<!-- /Intro-->
 		
@@ -36,9 +35,10 @@
 				<div class="col-md-3 col-sm-6 highlight">
 					<div class="h-caption">
 						<h4>
-							<i class="glyphicon glyphicon-asterisk">
+							<i class="glyphicon glyphicon-th">
 							</i> 
-							<a href="articles/1" > Espaces de solidarités </a> 
+							
+							 Espaces de solidarités 
 						</h4>
 					</div>
 				<div class="h-body text-center">
@@ -46,7 +46,7 @@
 					</div>
 				</div>
 				<div class="col-md-3 col-sm-6 highlight">
-					<div class="h-caption"><h4><i class="fa fa-book"></i><a href="articles/1" >Développement de projets</a></h4></div>
+					<div class="h-caption"><h4><i class="fa fa-book"></i>Développement de projets</h4></div>
 					<div class="h-body text-center">
 						<p>Être une organisation qui facilite les outils pour le développement de projets de vie dans la communauté où ou vivent des pauvres </p>
 					</div>
@@ -72,83 +72,51 @@ Favoriser le développement et la croissance de la personne, en lui accordant le
 
 	<!-- container -->
 <div class="container">
-		<h3 class="text-center top-space">Actualités / pauvreté en république centrafricaine</h3>
+		<h3 class="text-center top-space">Actualités / pauvreté en république centrafricaine</h3> 
 		</br>
 <div class="container">
 
     <table class="table ">
-        <thead class="thead-red">
+        <thead class="thead-red p-3 mb-2 bg-primary text-white">
             <tr>
-                <th>DATE</th>
+                <th>DATE   </th>
                 <th>IMAGE </th>
 				<th>TITRE</th>
                 <th>RESUME</th>
 
-                <th>ACTION</th>
+                <th>  </th>
             </tr>
         </thead>
         <tbody>
 
-        {% for article in articles %}
-
-{#  <div class="row">
-		
-		<div class="col-sm-1">{{ article.createdAt ? article.createdAt|date('d/m/Y') : '' }}</div>
-		<div class="col-sm-1"> 					{% if article.filename %}
-							<img src="{{vich_uploader_asset(article, 'imageFile') | imagine_filter('thumb') }}" >
-							{% else %}
-							<img src="{{'/images/articles/empty2.jpg'| imagine_filter('thumb') }}" alt="card-img-top" style="width: 90%; height:50%;" >                    
-						{% endif %}
-						</div>
-		<div class="col-sm-3">{{ article.titre }} </div>
-
-		<div class="col-sm-6">{{ article.resume }}</div>
-
-		<div class="col-sm-1"><a href="{{ path('articles_show', {id: article.id, slug: article.slug }) }}" class="btn btn-warning btn-sm">Lire </a></div>
-</div> #}
-
-            <tr>
-               
-                <td>{{ article.createdAt ? article.createdAt|date('d/m/Y') : '' }}</td>
-			   <td>
-					{% if article.filename %}
+			{% for article in articles %}
+				<tr>
+					<td>{{ article.createdAt ? article.createdAt|date('d/m/y') : '' }}</td>
+					<td>
+						{% if article.filename %}
 							<img src="{{vich_uploader_asset(article, 'imageFile') | imagine_filter('thumb') }}"  alt="card-img-top" style="width: 100%; height:auto;" >
-							{% else %}
+								{% else %}
 							<img src="{{'/images/articles/empty2.jpg'| imagine_filter('thumb') }}" alt="card-img-top" style="width: 90%; height:50%;" >                    
 						{% endif %}
-			    </td>
-			    <td>{{ article.titre }}</td>
-
-                <td>{{ article.resume }}</td>
-
-                <td>
-                    <a href="{{ path('articles_show', {id: article.id, slug: article.slug }) }}" class="btn btn-warning btn-sm">Lire </a>
-                  {#  <a href="{{ path('articles_edit', {'id': article.id}) }}">Editer</a> #}
-                </td>
-            </tr>
-			
-        {% endfor %}
-        </tbody>
-    </table>
-	     <div class="pagination">
-        {{ knp_pagination_render(articles) }}
-   		 </div>
- </div>
-</div>	<!-- /container -->
-	<!-- Social links. @TODO: replace by link/instructions in template -->
-	<section id="social">
-		<div class="container">
-			<div class="wrapper clearfix">
-				<!-- AddThis Button BEGIN -->
-				<div class="addthis_toolbox addthis_default_style">
-				<a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
-				<a class="addthis_button_tweet"></a>
-				<a class="addthis_button_linkedin_counter"></a>
-				<a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
-				</div>
-				<!-- AddThis Button END -->
-			</div>
+					</td>
+					<td>
+						{{ article.titre }}
+					</td>
+					<td>
+						{{ article.resume }}
+					</td>
+					<td>
+						<a href="{{ path('articles_show', {id: article.id, slug: article.slug }) }}" class="btn btn-primary btn-sm">Lire </a>
+						{#  <a href="{{ path('articles_edit', {'id': article.id}) }}">Editer</a> #}
+					</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+		<div class="pagination">
+			{{ knp_pagination_render(articles) }}
 		</div>
-	</section>
-	<!-- /social links -->
+</div>
+</div>	<!-- /container -->
+
 {% endblock %}

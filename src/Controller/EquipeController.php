@@ -17,12 +17,12 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("/equipe")
+ * @Route("/equipe", name="equipe_")  
  */
 class EquipeController extends AbstractController
 {
     /**
-     * @Route("/", name="equipe_index", methods={"GET"})
+     * @Route("/", name="index", methods={"GET"})
      */
     public function index(EquipeRepository $equipeRepository): Response
     {
@@ -33,7 +33,7 @@ class EquipeController extends AbstractController
     
     
     /**
-     * @Route("/{slug}-{id}", name="equipe_show", requirements={"slug":"[a-z0-9\-]*"})
+     * @Route("/{slug}-{id}", name="show", requirements={"slug":"[a-z0-9\-]*"})
     * @param  equipe $equipe
     * @return Response
     */

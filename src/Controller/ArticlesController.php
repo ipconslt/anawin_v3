@@ -26,7 +26,7 @@ USE FOS\CKEditorBundle\Form\Type\CKEditorType;
 
 
 /**
- * @Route("/articles")
+ * @Route("/articles", name="articles_")
  */
 class ArticlesController extends AbstractController
 {
@@ -35,7 +35,7 @@ class ArticlesController extends AbstractController
     }
 
     /**
-     * @Route("/", name="articles_index", methods={"GET"})
+     * @Route("/", name="index", methods={"GET"})
      */
     public function index(PaginatorInterface $paginator, Request $request): Response
     {
@@ -54,7 +54,7 @@ class ArticlesController extends AbstractController
     }
 
     /**
-     * @Route("/{slug}-{id}", name="articles_show", methods={"GET"},requirements={"slug":"[a-z0-9\-]*"} )
+     * @Route("/{slug}-{id}", name="show", methods={"GET"},requirements={"slug":"[a-z0-9\-]*"} )
      * @param  Articles $articles
      */
     public function show(Articles $articles, string $slug, Request $request, EntityManagerInterface $manager)

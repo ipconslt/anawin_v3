@@ -21,12 +21,11 @@ use Knp\Component\Pager\PaginatorInterface;
 
 
     /**
-     * @Route("/administrator/articles")
+     * @Route("/administrator/articles", name="articles_administrator_")
      */
     class ArticlesController extends AbstractController
+
 {
-   
-    
     /**
      * @param ArticlesRepository $repository
      * @param ObjectManager $em
@@ -39,7 +38,7 @@ use Knp\Component\Pager\PaginatorInterface;
 
 
     /**
-     * @Route("/", name="articles_administrator_index",  methods={"GET"})
+     * @Route("/", name="index",  methods={"GET"})
      */
     public function index(ArticlesRepository $articlesRepository, PaginatorInterface $paginator, Request $request):Response
     {
@@ -58,7 +57,7 @@ use Knp\Component\Pager\PaginatorInterface;
     }
 
      /**
-     * @Route("/article/new", name="articles_new", methods={"GET","POST"})
+     * @Route("/article/new", name="new", methods={"GET","POST"})
      */
     public function new(Request $request): Response
     {
@@ -82,7 +81,7 @@ use Knp\Component\Pager\PaginatorInterface;
     }
 
     /**
-     * @Route("/article/{id}", name="articles_edit", methods={"GET","POST"})
+     * @Route("/article/{id}", name="edit", methods={"GET","POST"})
      */
     public function edit(Request $request, Articles $article): Response
     {
@@ -104,7 +103,7 @@ use Knp\Component\Pager\PaginatorInterface;
     }
 
     /**
-     * @Route("/article/{id}", name="articles_delete", methods={"DELETE"})
+     * @Route("/article/{id}", name="delete", methods={"DELETE"})
      */
     public function delete(Request $request, Articles $article): Response
     {

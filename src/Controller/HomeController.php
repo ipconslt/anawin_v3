@@ -13,7 +13,12 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Knp\Component\Pager\PaginatorInterface;
 
-
+    /**
+     * @Route("/", name="home_")
+     * 
+     * @Route("/home", name="accueil_")
+     * 
+     */
 
  class HomeController extends AbstractController
 {
@@ -23,8 +28,7 @@ use Knp\Component\Pager\PaginatorInterface;
     
 
     /**
-     * @Route("/home", name="home_index")
-     * @Route("/", name="homehome_index2")
+     * @Route("/", name="index")
      * @param mixed 
      * @return Response
      */
@@ -44,7 +48,7 @@ use Knp\Component\Pager\PaginatorInterface;
     }
 
     /**
-     * @Route("/apropos", name="index_apropos")
+     * @Route("/apropos", name="apropos")
      */
     public function apropos()
     {   

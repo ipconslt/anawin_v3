@@ -8,13 +8,13 @@
 			</div>
 			<div class="navbar-collapse collapse">
 				<ul class="nav navbar-nav pull-right">
-					<li class="active"><a href="{{ path('admin_home') }}">Accueil</a></li>
+					<li class="active"><a href="{{ path('administrator_home') }}">Accueil</a></li>
 					<li class="dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown">Systeme <b class="caret"></b></a>
 						<ul class="dropdown-menu">
-							<li><a href="{{ path('admin_home') }}">Panneau de configuration </a></li>
-							<li class="active"><a href="{{ path('admin_home') }}">Informations système</a></li>
-							<li class="active"><a href="{{ path('admin_home') }}">Vider le cache </a></li>
+							<li><a href="{{ path('administrator_home') }}">Panneau de configuration </a></li>
+							<li class="active"><a href="{{ path('administrator_home') }}">Informations système</a></li>
+							<li class="active"><a href="{{ path('administrator_home') }}">Vider le cache </a></li>
 						</ul>
 
 					</li>
@@ -25,7 +25,7 @@
 							<li><a href="{{ path('abonnes_administrator_admin')}}">Liste des Abonnés</a></li>
 							<li><a href="{{ path('abonnes_administrator_admin')}}">Liste des Administratuers</a></li>
 							<li><a href="/admin/user/users">Gérer les Utilisateurs</a></li>
-							<li><a href="{{ path('admin_home') }}">Gérer les groupes</a></li>
+							<li><a href="{{ path('administrator_home') }}">Gérer les groupes</a></li>
 						</ul>
 					</li>
 					<li class="dropdown">
@@ -33,18 +33,18 @@
 						<ul class="dropdown-menu">
 							<li><a href="{{path('articles_administrator_index')}}">Articles </a></li>
 							<li class="active"><a href="{{ path('categorie_administrator_index') }}">Catégories</a></li>
-                            <li class="active"><a href="{{ path('admin_home') }}">Articles à la une</a></li>
-                            <li class="active"><a href="{{ path('admin_home') }}">images</a></li>
+                            <li class="active"><a href="{{ path('administrator_home') }}">Articles à la une</a></li>
+                            <li class="active"><a href="{{ path('administrator_home') }}">images</a></li>
 						</ul>
 					</li>
-					<li><a href="{{ path('admin_home') }}">Composantes</a></li>
-					<li><a href="{{ path('admin_home') }}">Extensions</a></li>
-					<li><a href="{{ path('contact') }}">Help</a></li>
+					<li><a href="{{ path('administrator_home') }}">Composantes</a></li>
+					<li><a href="{{ path('administrator_home') }}">Extensions</a></li>
+					<li><a href="{{ path('administrator_home') }}">Help</a></li>
 										{% if not app.user %}
 						<li><a class="btn" href="{{ path('fos_user_security_login') }}">LOG IN / SIGN UP</a></li>
 					{% else %}
 						<li><a class="btn btn-secondary" href="{{ path('fos_user_security_logout') }}"> LOG OUT</a></li>
-						<li><a class="btn btn-secondary" href="{{ path('admin_home') }}" target="blank" >Admin</a></li>
+						<li><a class="btn btn-secondary" href="{{ path('administrator_home') }}" target="blank" >Admin</a></li>
 					{% endif %}
 				</ul>
 			</div><!--/.nav-collapse -->
